@@ -260,73 +260,171 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: Solo Doctor who handles both medical practice and administrative tasks on their own.
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+- Simplify admin workload
+- Easily manage patient records and appointments
+- Quickly search for patient records
+- Reduce forgotten or missed appointments
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​     | I want to …​                        | So that I can…​                                               |
+|----------|-------------|-------------------------------------|---------------------------------------------------------------|
+| `* * *`  | doctor      | add patient contacts                | register patients' information                                |
+| `* * *`  | doctor      | delete patient contacts             | delete patients' information                                  |
+| `* * *`  | doctor      | list patient contacts               | see all patients' information                                 |
+| `* * *`  | doctor      | see my patients' appointments       | prepare for upcoming appointments                             |
+| `* * *`  | doctor      | add a patient's appointment         | register a new appointment                                    |
+| `* * *`  | doctor      | delete a patient's appointment      | handle cancellation of appointments                           |
+| `* * *`  | doctor      | edit patients' contacts             | edit patients' information                                    |
+| `* * *`  | doctor      | see all stored appointments         | easily see upcoming appointments                              |
+| `* * *`  | doctor      | edit upcoming appointments          | reschedule appointments if needed                             |
+| `* *`    | doctor      | search appointments by patient name | quickly locate a specific consultation                        |
+| `* *`    | doctor      | add detailed notes for each patient | remember diagnoses, observations and treatments               |
+| `*`      | doctor      | attach documents/links              | easily reference patient documents                            |
+| `*`      | busy doctor | autocomplete commands               | use the program more easily without technological know-how    |
+| `*`      | busy doctor | use alias commands                  | quickly add patient and appointment information via shortcuts |
 
-*{More to be added}*
+
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `DoctorBase` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Add patient**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+1. User chooses to add patient with relevant details 
+2. DoctorBase adds patient into patient list <br>
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. DoctorBase detects an invalid parameter in the entered details
+  * 1a1. DoctorBase rejects command and does not add patient into patient list <br>
+    Use case ends.
 
+* 1b. DoctorBase detects a duplicate patient entry
+  * 1b1. DoctorBase rejects command and does not add patient into patient list <br>
+    Use case ends.
+
+<br>
+
+**Use case: UC2 - List current patients**
+
+**MSS**
+
+1. User chooses to view a list of current patients 
+2. DoctorBase shows list of patients to user <br>
+   Use case ends.
+
+
+**Extensions**
+
+* 2a. DoctorBase detects no entries in list <br>
   Use case ends.
 
-* 3a. The given index is invalid.
+<br>
 
-    * 3a1. AddressBook shows an error message.
+**Use case: UC3 - Delete patient**
 
-      Use case resumes at step 2.
+**MSS**
 
-*{More to be added}*
+1. User chooses to delete a patient from DoctorBase 
+2. DoctorBase deletes the patient entry from storage <br>
+   Use case ends.
+
+
+**Extensions**
+
+* 2a. DoctorBase does not find an entry of the selected patient
+  * 2a1. DoctorBase rejects command and does nothing <br>
+  Use case ends.
+
+<br>
+
+**Use case: UC4 - Add appointment**
+
+**MSS**
+
+1. User chooses to add an appointment to DoctorBase 
+2. DoctorBase adds the appointment into appointment storage <br>
+   Use case ends.
+
+
+
+**Extensions**
+
+* 1a. DoctorBase detects NRIC not in storage
+  * 1a1. DoctorBase rejects command and does nothing <br>
+  Use case ends.
+
+
+* 1b. DoctorBase detects duplicate appointment 
+	* 1b1. DoctorBase rejects command and does nothing <br>
+           Use case ends.
+
+
+* 1c. DoctorBase detects invalid parameter in appointment details
+	* 1c1. DoctorBase rejects command and does nothing <br>
+	Use case ends.
+
+<br>
+
+
+**Use case: UC5 - List appointment**
+
+**MSS**
+
+1. User chooses to view a list of existing appointments 
+2. DoctorBase shows the list of existing appointments to User <br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. DoctorBase detects no entries in list <br>
+  Use case ends.
+
+<br>
+
+**Use case: UC6 - Delete appointment**
+
+**MSS**
+
+1. User chooses to delete an appointment entry from the list of existing appointments 
+2. DoctorBase deletes the appointment entry from the list of existing appointments <br>
+   Use case ends.
+
+
+**Extensions**
+
+* 2a. DoctorBase does not find the indicated appointment entry
+  * 2a1. DoctorBase rejects command and does nothing <br>
+  Use case ends.
+
+<br>
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+* The system should respond within 2 seconds (performance)
+* The system should only be used by 1 user (scalability)
+* The system should function on Windows 11, Linux, and MacOS (usability)
+* The system should not store more than 500 patients 
+* The system should not store more than 5000 appointments
 
-*{More to be added}*
+
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Solo doctor**: A doctor that takes care of patients under them by themselves with no other assistance
+* **Patient**: A person that receives care and has appointments with the solo doctor
+* **Appointment**: A scheduled medical meeting between the patient and the solo doctor
 
 --------------------------------------------------------------------------------------------------------------------
 
