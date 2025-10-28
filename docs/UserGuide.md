@@ -1,4 +1,7 @@
-
+---
+layout: page
+title: User Guide
+---
 # DoctorBase
 
 Hi there, and welcome to **DoctorBase**, your new desktop assistant for managing patient information and appointments!
@@ -63,9 +66,11 @@ Whether you're a solo doctor managing many patients or just looking to streamlin
   * Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
     Some example commands you can try:
 
-    * `list` : Lists all contacts.
+    * `list` : Lists details of all patients.
 
     * `list-appt 2` : Lists all appointments of patient at index 2
+
+    * `list-appt-upcoming` : Lists all upcoming appointments
 
     * `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the patient list.
 
@@ -161,6 +166,16 @@ Shows a list of all patients in the patient list. <br>
 Useful when you want to view all the patients currently under your care
 
 Format: `list`
+<br>
+<br>
+<br>
+
+### Listing all upcoming appointments : `list-appt-upcoming`
+
+Shows a list of all upcoming appointments with any patient. <br>
+Useful when you want to keep track of your upcoming appointment schedule
+
+Format: `list-appt-upcoming`
 <br>
 <br>
 <br>
@@ -341,16 +356,17 @@ If that does not solve the issue, please redownload the latest `.jar` file (rele
 
 ## Command summary
 
-| Action                 | Format, Examples                                                                                                                                                                                                         |
-|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Patient**        | `add n/NAME i/NRIC g/GENDER p/PHONE_NUMBER e/EMAIL d/DATEOFBITH a/ADDRESS [mh/MEDICALHISTORY]…​`<br> e.g., `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01` |
-| **Add Appointment**    | `add-appt INDEX at/APPOINTMENT TITLE ad/APPOINTMENT DATE`<br> e.g., `add-appt 1 at/flu jab ad/29-02-2025, 0900`                                                                                                          |
-| **Clear List**         | `clear`                                                                                                                                                                                                                  |
-| **Delete Patient**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                      |
-| **Delete Appointment** | `delete-appt INDEX`<br> e.g., `delete-appt 1`                                                                                                                                                                            |
-| **Edit Patient**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                              |
-| **Edit Appointment**   | `edit-appt INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]` <br> e.g., `edit-appt 1 at/dental ad/02-02-2002, 0900`                                                                                                    |
-| **Find Patient**       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                               |
-| **List Patient**       | `list`                                                                                                                                                                                                                   |
-| **List Appointment**   | `list-appt INDEX`<br> e.g., `list-appt 1`                                                                                                                                                                                |
-| **Help**               | `help`                                                                                                                                                                                                                   |
+| Action                             | Format, Examples                                                                                                                                                                                                         |
+|------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient**                    | `add n/NAME i/NRIC g/GENDER p/PHONE_NUMBER e/EMAIL d/DATEOFBITH a/ADDRESS [mh/MEDICALHISTORY]…​`<br> e.g., `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01` |
+| **Add Appointment**                | `add-appt INDEX at/APPOINTMENT TITLE ad/APPOINTMENT DATE`<br> e.g., `add-appt 1 at/flu jab ad/29-02-2025, 0900`                                                                                                          |
+| **Clear List**                     | `clear`                                                                                                                                                                                                                  |
+| **Delete Patient**                 | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                      |
+| **Delete Appointment**             | `delete-appt INDEX`<br> e.g., `delete-appt 1`                                                                                                                                                                            |
+| **Edit Patient**                   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                              |
+| **Edit Appointment**               | `edit-appt INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]` <br> e.g., `edit-appt 1 at/dental ad/02-02-2002, 0900`                                                                                                    |
+| **Find Patient**                   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                               |
+| **List Patients**                  | `list`                                                                                                                                                                                                                   |
+| **List Upcoming Appointments**     | `list-appt-upcoming`                                                                                                                                                                                                     |
+| **List Appointments of a Patient** | `list-appt INDEX`<br> e.g., `list-appt 1`                                                                                                                                                                                |
+| **Help**                           | `help`                                                                                                                                                                                                                   |

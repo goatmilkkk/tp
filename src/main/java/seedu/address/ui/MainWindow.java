@@ -167,6 +167,8 @@ public class MainWindow extends UiPart<Stage> {
         patientListPanelPlaceholder.setVisible(true);
         appointmentListPanelPlaceholder.setVisible(false);
 
+        statusbarPlaceholder.getChildren().clear();
+
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getDoctorBaseFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
@@ -184,6 +186,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleListAppointment() {
+        appointmentListPanelPlaceholder.getChildren().clear();
+        statusbarPlaceholder.getChildren().clear();
+
         if (logic.getSelectedPatient() == null) {
             handleListAllUpcomingAppointments();
             return;

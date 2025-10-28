@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2526S1-CS2103T-W10-3/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2526S1-CS2103T-W10-3/tp/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -68,13 +68,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2526S1-CS2103T-W10-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S1-CS2103T-W10-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2526S1-CS2103T-W10-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -85,7 +85,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2526S1-CS2103T-W10-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -115,7 +115,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2526S1-CS2103T-W10-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -136,7 +136,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2526S1-CS2103T-W10-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -268,35 +268,41 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: Solo Doctor who handles both medical practice and administrative tasks on their own.
+**Target user profile**: 
+- Solo doctor who manages administrative tasks on their own.
+- prefer desktop apps over other types 
+- can type fast 
+- prefers typing to mouse interactions 
+- is reasonably comfortable using CLI apps
 
 **Value proposition**: 
-- Simplify admin workload
-- Easily manage patient records and appointments
-- Quickly search for patient records
-- Reduce forgotten or missed appointments
+- Simplifies administrative workload
+- Can manage patient records and appointments faster than a typical mouse/GUI driven app
+- Reduces forgotten or missed appointments
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​     | I want to …​                        | So that I can…​                                               |
-|----------|-------------|-------------------------------------|---------------------------------------------------------------|
-| `* * *`  | doctor      | add patient contacts                | register patients' information                                |
-| `* * *`  | doctor      | delete patient contacts             | delete patients' information                                  |
-| `* * *`  | doctor      | list patient contacts               | see all patients' information                                 |
-| `* * *`  | doctor      | see my patients' appointments       | prepare for upcoming appointments                             |
-| `* * *`  | doctor      | add a patient's appointment         | register a new appointment                                    |
-| `* * *`  | doctor      | delete a patient's appointment      | handle cancellation of appointments                           |
-| `* * *`  | doctor      | edit patients' contacts             | edit patients' information                                    |
-| `* * *`  | doctor      | see all stored appointments         | easily see upcoming appointments                              |
-| `* * *`  | doctor      | edit upcoming appointments          | reschedule appointments if needed                             |
-| `* *`    | doctor      | search appointments by patient name | quickly locate a specific consultation                        |
-| `* *`    | doctor      | add detailed notes for each patient | remember diagnoses, observations and treatments               |
-| `*`      | doctor      | attach documents/links              | easily reference patient documents                            |
-| `*`      | busy doctor | autocomplete commands               | use the program more easily without technological know-how    |
-| `*`      | busy doctor | use alias commands                  | quickly add patient and appointment information via shortcuts |
+| Priority | As a …​     | I want to …​                        | So that I can…​                                                         |
+|----------|-------------|-------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | new user    | see usage instructions              | refer to instructions when I forget how to use the app                  |
+| `* * *`  | doctor      | add patient details                 | keep track of my patients                                               |
+| `* * *`  | doctor      | delete patient details              | remove information on patients I no longer need                         |
+| `* * *`  | doctor      | find a patient by name              | locate details of patients without having to go through the entire list |
+| `* * *`  | doctor      | list patient details                | view all of my patients' information                                    |
+| `* * *`  | doctor      | see my patients' appointments       | prepare for upcoming appointments                                       |
+| `* * *`  | doctor      | add a patient's appointment         | register a new appointment                                              |
+| `* * *`  | doctor      | delete a patient's appointment      | handle cancellation of appointments                                     |
+| `* * *`  | doctor      | edit patients' contacts             | edit patients' information                                              |
+| `* * *`  | doctor      | see all stored appointments         | easily see upcoming appointments                                        |
+| `* * *`  | doctor      | edit upcoming appointments          | reschedule appointments if needed                                       |
+| `* *`    | doctor      | search appointments by patient name | quickly locate a specific consultation                                  |
+| `* *`    | doctor      | add detailed notes for each patient | remember diagnoses, observations and treatments                         |
+| `*`      | doctor      | attach documents/links              | easily reference patient documents                                      |
+| `*`      | busy doctor | autocomplete commands               | use the program more easily without technological know-how              |
+| `*`      | busy doctor | use alias commands                  | quickly add patient and appointment information via shortcuts           |
 
 
 

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.Messages.MESSAGE_NOT_VIEWING_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
@@ -38,8 +39,6 @@ public class EditAppointmentCommand extends Command {
             + PREFIX_APPOINTMENT_DATETIME + "10-10-2010, 0900\n";
 
     public static final String MESSAGE_SUCCESS = "Appointment edited for %1$s";
-    public static final String MESSAGE_NOT_VIEWING_APPOINTMENT = "Command only works when displaying appointments.\n"
-            + "Use the following command first: list-appt";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_APPOINTMENT_TIME_CLASH =
             "The appointment has a clashing timing with another appointment.";

@@ -73,7 +73,7 @@ public class DeleteAppointmentCommandTest {
 
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(INDEX_FIRST_APPOINTMENT);
 
-        assertCommandFailure(deleteAppointmentCommand, model, EditAppointmentCommand.MESSAGE_NOT_VIEWING_APPOINTMENT);
+        assertCommandFailure(deleteAppointmentCommand, model, Messages.MESSAGE_NOT_VIEWING_APPOINTMENT);
     }
 
     @Test

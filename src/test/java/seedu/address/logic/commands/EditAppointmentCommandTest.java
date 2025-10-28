@@ -126,7 +126,7 @@ public class EditAppointmentCommandTest {
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(editedAppointment).build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
 
-        assertCommandFailure(editAppointmentCommand, model, EditAppointmentCommand.MESSAGE_NOT_VIEWING_APPOINTMENT);
+        assertCommandFailure(editAppointmentCommand, model, Messages.MESSAGE_NOT_VIEWING_APPOINTMENT);
     }
 
     @Test

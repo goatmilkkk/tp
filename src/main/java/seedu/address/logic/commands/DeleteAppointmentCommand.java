@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_NOT_VIEWING_APPOINTMENT;
 
 import java.util.ArrayList;
 
@@ -24,8 +25,6 @@ public class DeleteAppointmentCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Appointment for %1$s: %2$s deleted";
-    public static final String MESSAGE_NOT_VIEWING_APPOINTMENT = "Command only works when displaying appointments.\n"
-            + "Use the following command first: list-appt";
     public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "No apppointment at index %1$s "
             + "exists in the address book";
 

@@ -9,22 +9,28 @@
 
 
 ## Overview
-DoctorBase is a desktop application with a keyboard-first, command-driven interface, designed for doctors to manage patient records and clinic administration tasks efficiently.
+**DoctorBase is a desktop application designed for doctors to manage patient information and appointments 
+efficiently.**  
+It combines a responsive Graphical User Interface (GUI) with powerful Command Line Interface (CLI) commands, allowing users who prefer keyboard-based workflows to work quickly and precisely.
+
+DoctorBase runs entirely offline, offering a secure and reliable way to store patient data without relying on internet connectivity.
 
 ### Target User
-DoctorBase is made for doctors who wish to handle both medical practice and administrative tasks on their own.
+DoctorBase is built for:
+* **Private practitioners** and **solo doctors** who manage their own patients.
+* **Clinic staff** who assist with scheduling and record keeping.
 
 ### Value Proposition
-* Simplify Admin Workload
-* Easily manage Patient Records & Appointments
-* Efficiently schedule appointment
-* Quickly search for Patient Records
-* Reduce forgotten or missed appointments
-
+DoctorBase helps medical professionals stay organized and focused by providing a simple, local solution to:
+* Easily manage patient records & appointments in one place
+* Efficiently track and schedule appointments
+* Avoid missing or forgetting appointments
+* Quickly search for patient records
 
 ### Features
-* Add and remove patient information and appointments
+* Add, edit and remove patient information and appointments
 * View patient information and appointments
+* Works entirely offline for privacy and reliability
 * and more!
 
 ### Acknowledgements

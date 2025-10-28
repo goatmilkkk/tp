@@ -22,6 +22,8 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_NOT_VIEWING_PATIENT_LIST = "Command only works when displaying patients.\n"
             + "Use the following command first: list";
+    public static final String MESSAGE_NOT_VIEWING_APPOINTMENT = "Command only works when displaying appointments.\n"
+            + "Use the following command first: list-appt";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
