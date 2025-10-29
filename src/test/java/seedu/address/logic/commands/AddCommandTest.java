@@ -92,6 +92,7 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
         private Patient selectedPatient;
+        private ViewMode viewMode = ViewMode.PATIENT_LIST;
 
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -185,12 +186,12 @@ public class AddCommandTest {
 
         @Override
         public ViewMode getViewMode() {
-            throw new AssertionError("This method should not be called.");
+            return viewMode;
         }
 
         @Override
         public void setViewMode(ViewMode viewMode) {
-            throw new AssertionError("This method should not be called.");
+            this.viewMode = viewMode;
         }
     }
 

@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.Title;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
 import seedu.address.testutil.AppointmentBuilder;
@@ -110,6 +111,14 @@ public class DoctorBaseTest {
 
         ObservableList<Appointment> upcoming = doctorBase.getUpcomingAppointmentList();
 
+        // Update appointments to include names and nric to follow getUpcomingAppointmentsList changes
+        past = new Appointment(
+                new Title(past.getTitle() + " (" + patient.getName() + ", " + patient.getNric() + ")"),
+                past.getDateTime());
+        future = new Appointment(
+                new Title(future.getTitle() + " (" + patient.getName() + ", " + patient.getNric() + ")"),
+                future.getDateTime());
+
         assertEquals(1, upcoming.size());
         assertTrue(upcoming.contains(future));
         assertFalse(upcoming.contains(past));
@@ -136,6 +145,17 @@ public class DoctorBaseTest {
         doctorBase.addPatient(p2);
 
         ObservableList<Appointment> upcoming = doctorBase.getUpcomingAppointmentList();
+
+        // Update appointments to include names and nric to follow getUpcomingAppointmentsList changes
+        a1 = new Appointment(
+                new Title(a1.getTitle() + " (" + p1.getName() + ", " + p1.getNric() + ")"),
+                a1.getDateTime());
+        a2 = new Appointment(
+                new Title(a2.getTitle() + " (" + p2.getName() + ", " + p2.getNric() + ")"),
+                a2.getDateTime());
+        a3 = new Appointment(
+                new Title(a3.getTitle() + " (" + p2.getName() + ", " + p2.getNric() + ")"),
+                a3.getDateTime());
 
         assertEquals(3, upcoming.size());
         // Check sorting order

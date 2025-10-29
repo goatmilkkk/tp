@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
+import seedu.address.model.ViewMode;
 
 /**
  * Format full help instructions for every command for display.
@@ -16,6 +17,7 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        model.setViewMode(ViewMode.PATIENT_LIST);
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false, false);
     }
 }

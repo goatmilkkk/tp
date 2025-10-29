@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.Title;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
 
@@ -114,7 +115,11 @@ public class DoctorBase implements ReadOnlyDoctorBase {
     @Override
     public ObservableList<Appointment> getUpcomingAppointmentList() {
         List<Appointment> upcomingAppointments = getPatientList().stream()
-                .flatMap(patient -> patient.getAppointments().stream())
+                .flatMap(patient -> patient.getAppointments().stream()
+                        .map(appt -> new Appointment(
+                                new Title(appt.getTitle() + " (" + patient.getName() + ", " + patient.getNric() + ")"),
+                                appt.getDateTime()
+                        )))
                 .filter(appointment -> appointment.getDateTime().isAfter(LocalDateTime.now()))
                 .sorted()
                 .toList();

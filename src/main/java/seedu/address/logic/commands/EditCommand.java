@@ -25,6 +25,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ViewMode;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.medicalhistory.MedicalHistory;
 import seedu.address.model.patient.Address;
@@ -96,6 +97,7 @@ public class EditCommand extends Command {
 
         model.setPatient(patientToEdit, editedPatient);
         model.setSelectedPatient(null);
+        model.setViewMode(ViewMode.PATIENT_LIST);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, Messages.format(editedPatient)));
     }

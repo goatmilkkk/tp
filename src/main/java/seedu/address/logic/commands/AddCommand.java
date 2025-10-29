@@ -14,6 +14,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ViewMode;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -23,7 +24,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to DoctorBase. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to DoctorBase.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_NRIC + "NRIC "
@@ -35,9 +36,11 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "MEDICALHISTORY]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
+            + PREFIX_NRIC + "S1234567D "
             + PREFIX_GENDER + "Male "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_DOB + "02-02-2002 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "overweight "
             + PREFIX_TAG + "cancer";
@@ -65,6 +68,7 @@ public class AddCommand extends Command {
 
         model.addPatient(toAdd);
         model.setSelectedPatient(null);
+        model.setViewMode(ViewMode.PATIENT_LIST);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

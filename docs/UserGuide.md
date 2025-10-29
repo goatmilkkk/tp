@@ -284,8 +284,8 @@ Format: `delete-appt INDEX`
   * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `delete-appt 1`
-* `delete-appt 3`
+* `list-appt 1` followed by `delete-appt 1` deletes the 1st appointment of the 1st patient in the patient list
+* `find alex` followed by `list-appt 1` followed by `delete-appt 3` deletes the 1st appointment of the 1st patient in the results of the find command
 <br>
 <br>
 <br>
@@ -335,7 +335,13 @@ Furthermore, certain edits can cause the DoctorBase to behave in unexpected ways
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DoctorBase home folder.
 
 **Q**: What happens if I accidentally type in the wrong parameters? <br>
-**A**: Do not worry, the application will pick up invalid parameters and tell you what was the issue and will not update the patient/appointment list
+**A**: Do not worry, the application will pick up invalid parameters and tell you what was the issue and will not update the patient/appointment list.
+
+**Q**: Can I change where DoctorBase stores its data?<br>
+**A**: Yes. Simply move your .jar file to a different folder and rerun it. DoctorBase will then create and store the data in a `data/` folder, relative to the new .jar location.
+
+**Q**: Can two patients share the same name?<br>
+**A**: Yes, but their NRICs must be unique as DoctorBase uses their NRIC to differentiate between patients.
 
 --------------------------------------------------------------------------------------------------------------------
 
