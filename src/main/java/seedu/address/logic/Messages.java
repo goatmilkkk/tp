@@ -41,6 +41,7 @@ public class Messages {
      * Formats the {@code patient} for display to the user.
      */
     public static String format(Patient patient) {
+        // This appears in the window directly below where the user inputs his/her commands
         final StringBuilder builder = new StringBuilder();
         builder.append(patient.getName())
                 .append("; NRIC: ")
