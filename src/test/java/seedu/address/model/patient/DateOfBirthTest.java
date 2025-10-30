@@ -25,18 +25,21 @@ public class DateOfBirthTest {
 
     @Test
     public void isValidDateOfBirth() {
-        // null name
+        // null dob
         assertFalse(DateOfBirth.isValidDateOfBirth(null));
 
-        // invalid name
+        // invalid dob
         assertFalse(DateOfBirth.isValidDateOfBirth("")); // empty string
         assertFalse(DateOfBirth.isValidDateOfBirth(" ")); // spaces only
         assertFalse(DateOfBirth.isValidDateOfBirth("31-87-2002")); // Note valid date
+        assertFalse(DateOfBirth.isValidDateOfBirth("02-10-2993"));
 
-        // valid name
-        assertTrue(DateOfBirth.isValidDateOfBirth("20-12-2002"));
-        assertTrue(DateOfBirth.isValidDateOfBirth("12-12-1999"));
-        assertTrue(DateOfBirth.isValidDateOfBirth("02-10-2993"));
+        // valid dob
+        assertTrue(DateOfBirth.isValidDateOfBirth("20-12-1920"));
+        assertTrue(DateOfBirth.isValidDateOfBirth("30-05-1970"));
+        assertTrue(DateOfBirth.isValidDateOfBirth("05-07-2002"));
+        assertTrue(DateOfBirth.isValidDateOfBirth("12-02-1999"));
+        assertTrue(DateOfBirth.isValidDateOfBirth("29-10-2025"));
     }
 
     @Test

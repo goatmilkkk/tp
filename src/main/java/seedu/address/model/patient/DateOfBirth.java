@@ -16,7 +16,7 @@ import java.time.format.ResolverStyle;
 public class DateOfBirth {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "DOB must be in DD-MM-YYYY format.";
+        "DOB must be in DD-MM-YYYY format, and it cannot be a future date.";
 
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
 
@@ -48,7 +48,11 @@ public class DateOfBirth {
      */
     public static boolean isValidDateOfBirth(String test) {
         try {
-            FORMATTER.withResolverStyle(ResolverStyle.STRICT).parse(test);
+            LocalDate parsed = LocalDate.parse(test, FORMATTER.withResolverStyle(ResolverStyle.STRICT));
+            // fail DOBs that are future-dated
+            if (parsed.isAfter(LocalDate.now())) {
+                return false;
+            }
             return true;
         } catch (NullPointerException | DateTimeParseException e) {
             return false;
