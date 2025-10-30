@@ -43,15 +43,21 @@ public class Messages {
     public static String format(Patient patient) {
         final StringBuilder builder = new StringBuilder();
         builder.append(patient.getName())
+                .append("; NRIC: ")
+                .append(patient.getNric())
+                .append("; Gender: ")
+                .append(patient.getGender())
                 .append("; Phone: ")
                 .append(patient.getPhone())
                 .append("; Email: ")
                 .append(patient.getEmail())
+                .append("; Date of Birth: ")
+                .append(patient.getDob())
                 .append("; Address: ")
                 .append(patient.getAddress())
-                .append("; Tags: ");
-        patient.getTags().forEach(builder::append);
+                .append("; Medical History: ");
+        patient.getTags()
+                .forEach(builder::append);
         return builder.toString();
     }
-
 }
