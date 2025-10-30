@@ -206,8 +206,6 @@ The following sequence diagram shows how a delete-appt command interacts within 
 Using `delete-appt 1` as an example. 
 ![DeleteAppointmentSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
 
-### Any proposed stuff
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

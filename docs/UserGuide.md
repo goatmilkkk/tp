@@ -53,10 +53,6 @@ With simple commands, you can add patients, schedule appointments, search record
        ```
        cd %USERPROFILE%\Documents\doctorbase
        ```
-     * Example:
-       ```
-       cd /home/documents/doctorbase
-       ```
        
 5. Run the app!
    * Once you're in the right folder, type this command and press Enter:
