@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+start
+:Recieves appointment from DeleteAppointmentParser;
+:Execute;
+if () then ([Viewing Appointment List])
+    if () then ([Index within bounds])
+        :Create edited patient
+        with removed appointment;
+        :Update Model with edited patient;
+        :Refresh the UI;
+        :Return CommandResult
+        (success message);
+        stop
+    else ([else])
+        :Throw CommandException
+        (invalid patient displayed index);
+        stop
+    endif
+else ([else])
+    :Throw CommandException
+(not viewing patient list);
+stop
+endif
+@enduml

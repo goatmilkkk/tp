@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+start
+:Recieves appointment from AddAppointmentParser;
+:Execute;
+if () then ([Viewing Patient List])
+    if () then ([Index within bounds])
+        if () then ([Duplicate appointment timing])
+            :Throw CommandException
+            (time clash);
+            stop
+        else ([else])
+            :Create edited patient with added appointment;
+            :Update Model with edited patient;
+            :Refresh the UI;
+            :Return CommandResult
+            (success message);
+            stop
+        endif
+    else ([else])
+        :Throw CommandException
+        (invalid patient displayed index);
+        stop
+    endif
+else ([else])
+    :Throw CommandException
+(not viewing patient list);
+stop
+endif
+@enduml

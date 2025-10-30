@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+start
+:Receive user input;
+:Tokenize input with
+PREFIX_APPOINTMENT_TITLE &
+PREFIX_APPOINTMENT_DATETIME;
+:Parse index from preamble;
+if () then ([valid index])
+    :Parse index;
+    :Create DeleteAppointmentCommand;
+    stop
+else ([else])
+    :Throw ParseException
+    (invalid index);
+    stop
+@enduml

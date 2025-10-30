@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+start
+:Receive user input;
+:Tokenize input with
+PREFIX_APPOINTMENT_TITLE &
+PREFIX_APPOINTMENT_DATETIME;
+:Parse index from preamble;
+if () then ([valid index])
+    if () then ([Both prefixes present])
+    :Parse appointment;
+    :Create the command object:
+    AddAppointmentCommand;
+    stop
+    else ([else])
+    :Throw ParseException
+    (invalid format);
+    stop
+    endif
+else ([else])
+    :Throw ParseException
+    (invalid index);
+    stop
+@enduml

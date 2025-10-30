@@ -126,7 +126,7 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `DoctorBaseParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to delete a patient).<br>
+3. The command can communicate with the `Model` when it is executed (e.g. to delete a patient).  
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -151,7 +151,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `MedicalHistory` list in `DoctorBase`, which `Patient` references. This allows `DoctorBase` to only require one `MedicalHistory` object per unique medical history, instead of each `Patient` needing their own `MedicalHistory` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `MedicalHistory` list in `DoctorBase`, which `Patient` references. This allows `DoctorBase` to only require one `MedicalHistory` object per unique medical history, instead of each `Patient` needing their own `MedicalHistory` objects.  
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -179,9 +179,28 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+## Some features
+For parsing the commands entered by the user, some examples are the AddAppointmentCommandParser and DeleteAppointmentCommandParser.  
+They are used to extract the appointment information provided, along with the index of the patient to operate on.
+
+### Adding appointment feature
+
+The following activity diagram summarizes what happens when the `AddAppointmentParser` attempts to parse the user's input:
+![AddAppointmentParserActivityDiagram](images/AddAppointmentParserActivityDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `AddAppointmentCommand`:
+![AddAppointmentActivityDiagram](images/AddAppointmentActivityDiagram.png)
+
 The following sequence diagram shows how an add-appt command interacts within the Logic component.
-Using `add-appt 1 at/DentalCheckup ad/10-10-2010, 0900` as an example. 
+Using `add-appt 1 at/DentalCheckup ad/10-10-2010, 0900` as an example.
 ![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
+
+### Deleting appointment feature
+The following activity diagram summarizes what happens when the `DeleteAppointmentParser` attempts to parse the user's input:
+![DeleteAppointmentParserActivityDiagram](images/DeleteAppointmentParserActivityDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `DeleteAppointmentCommand`:
+![DeleteAppointmentActivityDiagram](images/DeleteAppointmentActivityDiagram.png)
 
 The following sequence diagram shows how a delete-appt command interacts within the Logic component.
 Using `delete-appt 1` as an example. 
@@ -252,17 +271,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User chooses to add patient with relevant details 
-2. DoctorBase adds patient into patient list <br>
+2. DoctorBase adds patient into patient list  
    Use case ends.
 
 **Extensions**
 
 * 1a. DoctorBase detects an invalid parameter in the entered details
-  * 1a1. DoctorBase rejects command and does not add patient into patient list <br>
+  * 1a1. DoctorBase rejects command and does not add patient into patient list  
     Use case ends.
 
 * 1b. DoctorBase detects a duplicate patient entry
-  * 1b1. DoctorBase rejects command and does not add patient into patient list <br>
+  * 1b1. DoctorBase rejects command and does not add patient into patient list  
     Use case ends.
 
 <br>
@@ -272,13 +291,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User chooses to view a list of current patients 
-2. DoctorBase shows list of patients to user <br>
+2. DoctorBase shows list of patients to user  
    Use case ends.
 
 
 **Extensions**
 
-* 2a. DoctorBase detects no entries in list <br>
+* 2a. DoctorBase detects no entries in list  
   Use case ends.
 
 <br>
@@ -288,14 +307,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User chooses to delete a patient from DoctorBase 
-2. DoctorBase deletes the patient entry from storage <br>
+2. DoctorBase deletes the patient entry from storage  
    Use case ends.
 
 
 **Extensions**
 
 * 2a. DoctorBase does not find an entry of the selected patient
-  * 2a1. DoctorBase rejects command and does nothing <br>
+  * 2a1. DoctorBase rejects command and does nothing  
   Use case ends.
 
 <br>
@@ -305,7 +324,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User chooses to add an appointment to DoctorBase 
-2. DoctorBase adds the appointment into appointment storage <br>
+2. DoctorBase adds the appointment into appointment storage  
    Use case ends.
 
 
@@ -313,17 +332,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. DoctorBase detects NRIC not in storage
-  * 1a1. DoctorBase rejects command and does nothing <br>
+  * 1a1. DoctorBase rejects command and does nothing  
   Use case ends.
 
 
 * 1b. DoctorBase detects duplicate appointment 
-	* 1b1. DoctorBase rejects command and does nothing <br>
+	* 1b1. DoctorBase rejects command and does nothing  
            Use case ends.
 
 
 * 1c. DoctorBase detects invalid parameter in appointment details
-	* 1c1. DoctorBase rejects command and does nothing <br>
+	* 1c1. DoctorBase rejects command and does nothing  
 	Use case ends.
 
 <br>
@@ -334,12 +353,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User chooses to view a list of existing appointments 
-2. DoctorBase shows the list of existing appointments to User <br>
+2. DoctorBase shows the list of existing appointments to User  
    Use case ends.
 
 **Extensions**
 
-* 2a. DoctorBase detects no entries in list <br>
+* 2a. DoctorBase detects no entries in list  
   Use case ends.
 
 <br>
@@ -349,14 +368,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User chooses to delete an appointment entry from the list of existing appointments 
-2. DoctorBase deletes the appointment entry from the list of existing appointments <br>
+2. DoctorBase deletes the appointment entry from the list of existing appointments  
    Use case ends.
 
 
 **Extensions**
 
 * 2a. DoctorBase does not find the indicated appointment entry
-  * 2a1. DoctorBase rejects command and does nothing <br>
+  * 2a1. DoctorBase rejects command and does nothing  
   Use case ends.
 
 <br>
@@ -411,13 +430,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `delete 1`  
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete 0`  
       Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)  
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

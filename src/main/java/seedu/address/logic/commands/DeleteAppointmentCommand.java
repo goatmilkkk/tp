@@ -54,6 +54,9 @@ public class DeleteAppointmentCommand extends Command {
         }
 
         Appointment deletedAppointment = targetPatientAppointments.remove(targetIndex.getZeroBased());
+
+        // Updates the model with the updated appointment list
+        model.setPatient(targetPatient, targetPatient);
         return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                 Messages.format(targetPatient), deletedAppointment), false, true, false);
     }
