@@ -522,3 +522,44 @@ testers are expected to do more *exploratory* testing.
    E.g. Modify `patients` to `patient`  
    Expected: DoctorBase will start with no data. The data file will only be updated when a save is initiated.
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+Given below are how we expanded upon AB3 to fit our users (solo doctors)
+
+### Fields of Patient
+The Patient class (refactored from Person) had basic field of a typical person, however, it did not have some of the fields we would expect to be stored in a patient's info  
+such as:
+* Date of birth
+* Gender
+* Medical history
+
+Hence, the missing `DateOfBirth` and `Gender` classes has to be made from scratch, with reference from the existing AB3 fields (Name, Email, etc.)  
+
+While this was manageable, it required us to have an understanding of how the fields functioned and interacted with the rest of the system.  
+
+Whereas for `MedicalHistory`, we were able to refactor the existing `Tag` field in order for it to more properly fit our desired project scope.  
+
+### Appointment model
+Appointments are things that every patient would have, and would also be something that would happen at a specified date and time, to achieve an event, such as an injection.  
+However, having these inner fields would mean that the appointments would need to be implemented as a new model, with the date and time of the appointment, and the event happening at the appointment, as its fields.  
+
+The Appointment model had to be built from scratch, including the fields:
+* Title
+* DateTime
+
+The Appointment class also had to be integrated as a field of Patient, as to fit the project scope.
+
+### Appointment commands
+With a new model, there would be new commands tied to it as well  
+Hence, `add-appt`, `edit-appt`, `delete-appt` and `list-appt` were implemented.  
+
+To implement these command, we were able to reference the existing `add`, `edit`, `delete` and `list` commands.  
+However, there were also some caveats such as the selection of the patient to be operated on, requiring changes in core underlying classes such as `LogicManager` and `ModelManager` to implement a `selectedPatient` field and methods such as `getSelectedPatient()`.  
+
+### View model handling
+With the new commands with realistic restrictions such as `edit-appt` requiring the UI to be viewing a patient's appointment list, checks based on what the UI was viewing had to be implemented.  
+
+Hence, a `ViewMode` enum class had to built and implemented into `ModelManager` in order to track what the user is currently viewing.  
+With this, we were able to properly restrict the usage of certain commands to their required `ViewMode`.  
