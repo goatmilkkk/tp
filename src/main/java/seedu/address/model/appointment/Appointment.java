@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Appointment implements Comparable<Appointment> {
     public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd-MM-uuuu, HHmm");
     public static final String DATETIME_MESSAGE_CONSTRAINTS =
-            "Appointment date invalid! Expected Format: dd-MM-yyyy, HHmm";
+            "Appointment date invalid! Either invalid timing, or not following expected Format: dd-MM-yyyy, HHmm";
 
     private final Title title;
     private final LocalDateTime dateTime;

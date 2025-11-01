@@ -5,8 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.Messages.MESSAGE_NOT_VIEWING_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -28,13 +26,12 @@ import seedu.address.model.patient.Patient;
 public class EditAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "edit-appt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits appointment on patient's appointment list. "
-            + "Parameters: INDEX "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits appointment on patient's appointment list.\n"
+            + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_APPOINTMENT_TITLE + "TITLE] "
             + "[" + PREFIX_APPOINTMENT_DATETIME + "DATE_TIME (dd-MM-yyyy, HHmm)]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NRIC + "S1234567A "
-            + PREFIX_INDEX + "1 "
+            + "1 "
             + PREFIX_APPOINTMENT_TITLE + "Dental Checkup "
             + PREFIX_APPOINTMENT_DATETIME + "10-10-2010, 0900\n";
 

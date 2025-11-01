@@ -10,7 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class MedicalHistory {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Tag names should be alphanumeric and may contain hyphens or spaces";
+            "MedicalHistory titles should be alphanumeric and may contain hyphens or spaces.\n"
+            + "eg. mh/covid-19";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}- ]+";
 
     public final String tagName;
