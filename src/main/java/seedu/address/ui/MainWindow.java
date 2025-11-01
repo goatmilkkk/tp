@@ -66,7 +66,7 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
 
         // Set minimum window width to prevent layout overlap
-        primaryStage.setMinWidth(600);
+        primaryStage.setMinWidth(800);
 
 
         // Configure the UI

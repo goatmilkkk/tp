@@ -203,7 +203,7 @@ Updates the details of an existing patient.
 * At least **one optional field** must be provided.
 * Existing values will be updated to the input values.
 * When editing medical histories, the existing medical histories of the patient will be removed i.e adding of medical histories is not cumulative.
-* You can remove all the patient’s medical histories by typing `mh/` without specifying any medicalHistories after it.
+* You can remove all the patient’s medical histories by typing `mh/` without specifying any medical histories after it.
 
 **Examples:**
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
@@ -372,7 +372,7 @@ If that does not solve the issue, please redownload the latest `.jar` file (rele
 | **Clear List**                     | `clear`                                                                                                                                                                                                                    |
 | **Delete Patient**                 | `delete INDEX`   e.g., `delete 3`                                                                                                                                                                                          |
 | **Delete Appointment**             | `delete-appt INDEX`   e.g., `delete-appt 1`                                                                                                                                                                                |
-| **Edit Patient**                   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [mh/MEDICAL_HISTORY]…​`   e.g.,`edit 2 n/James Lee e/jameslee@example.com mh/underweight mh/depression`                                                        |
+| **Edit Patient**                   | `edit INDEX [n/NAME] [i/NRIC] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [d/DATE_OF_BIRTH] [a/ADDRESS] [mh/MEDICALHISTORY]…​`   e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                 |
 | **Edit Appointment**               | `edit-appt INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]`    e.g., `edit-appt 1 at/dental ad/02-02-2002, 0900`                                                                                                        |
 | **Find Patient**                   | `find KEYWORD [MORE_KEYWORDS]`   e.g., `find James Jake`                                                                                                                                                                   |
 | **List Patients**                  | `list`                                                                                                                                                                                                                     |

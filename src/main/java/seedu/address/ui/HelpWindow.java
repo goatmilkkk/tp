@@ -22,7 +22,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "1. Add Patient: add n/NAME i/NRIC g/GENDER p/PHONE e/EMAIL d/DATEOFBIRTH a/ADDRESS [mh/MEDICALHISTORY]\n"
             + "2. List Patients: list\n"
             + "3. Find Patient: find KEYWORD [MORE_KEYWORDS]\n"
-            + "4. Edit Patient: edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...\n"
+            + "4. Edit Patient: edit INDEX [n/NAME] [i/NRIC] [g/GENDER] [p/PHONE]"
+            + " [e/EMAIL] [d/DOB] [a/ADDRESS] [mh/MEDICALHISTORY]\n"
             + "5. Delete Patient: delete INDEX\n"
             + "6. Clear All Patients: clear\n"
             + "\n"
@@ -53,6 +54,8 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        root.initStyle(javafx.stage.StageStyle.UTILITY);
+        root.setResizable(false);
     }
 
     /**
