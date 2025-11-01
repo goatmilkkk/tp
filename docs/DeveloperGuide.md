@@ -562,7 +562,7 @@ testers are expected to do more *exploratory* testing.
    `find` currently matches only full words.  
    The enhancement will allow partial matches and regular expressions, such as:
     * `find han` matches `Hannah Ho`, `Hans Tan` and `Johan Chan`
-    * `find ^han` matches only `Hannah Ho` and `Hans Tan`
+    * `find ^han` matches only `Hannah Ho` and `Hans Tan`  
 
 6. **Find feature for appointments.**  
    In `list-appt` and `list-appt-upcoming` view, users cannot search for appointments by any of the field.  
