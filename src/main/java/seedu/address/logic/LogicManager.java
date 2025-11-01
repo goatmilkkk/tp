@@ -10,11 +10,14 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteAppointmentCommand;
+import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.DoctorBaseParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyDoctorBase;
+import seedu.address.model.ViewMode;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 import seedu.address.storage.Storage;
@@ -46,6 +49,17 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
+
+        // Ensure delete-appt & edit-appt return view-mode error when executed outside of appointments list view
+        String trimmedCommand = commandText.trim();
+        if (!trimmedCommand.isEmpty()) {
+            String commandWord = trimmedCommand.split("\\s+", 2)[0];
+            if ((EditAppointmentCommand.COMMAND_WORD.equals(commandWord) ||
+                    DeleteAppointmentCommand.COMMAND_WORD.equals(commandWord)) &&
+                    model.getViewMode() != ViewMode.PATIENT_APPOINTMENT_LIST) {
+                throw new CommandException(Messages.MESSAGE_NOT_VIEWING_APPOINTMENT);
+            }
+        }
 
         CommandResult commandResult;
         Command command = doctorBaseParser.parseCommand(commandText);
