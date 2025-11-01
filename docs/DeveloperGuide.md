@@ -510,15 +510,61 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 ### Saving data
+
 1. Dealing with missing data files.
+
    1. From the initial sample data, run any valid command to initiate a save to the data file.
+
    2. Close the application.
+   
    3. Delete the data file and re-launch the application.  
       Expected: DoctorBase will start with the sample data again.
+
 2. Dealing with corrupted data files.
+   
    1. From the initial sample data, run any valid command to initiate a save to the data file.
+   
    2. Close the application.
+   
    3. Modify `data/doctorBase.json` to corrupt it.  
    E.g. Modify `patients` to `patient`  
    Expected: DoctorBase will start with no data. The data file will only be updated when a save is initiated.
+
+## **Appendix: Planned Enhancements**
+
+### Team Size: 5
+
+1. **Support for special characters in Patient Names.**  
+   Currently, special characters (e.g. `/`, `ö`, `'`, etc.) are not accepted as valid inputs for Patient names.  
+   The enhancement will expand input validation to support UTF-8 character sets, allowing more realistic patient names.
+
+2. **Support for Patients without NRIC.**  
+   Current implementation requires all patients to have a valid Singapore NRIC.  
+   The enhancement will relax this constraint and accept alternative identifiers such as Passport numbers or Foreign 
+   ICs.
+
+3. **Improve error message handling when in wrong view.**  
+   When in the wrong view, error messages indicating that the user should be in another view is only displayed if 
+   the commands are typed with correct parameters.  
+   The enhancement will display the Wrong View error message as long 
+   as the command word is inputted and in the wrong view.
+
+4. **Support Appointment Commands when in Upcoming Appointments view.**  
+   Users cannot delete or edit appointments directly from the `list-appt-upcoming` view.  
+   The enhancement will track the patient-appointment mapping internally, allowing: 
+   ```
+   list-appt-upcoming
+   delete-appt 1
+   edit-appt 2 ad/02-02-2026, 1500
+   ```
+
+5. **More flexible `find` Command using Regex/Partial.**  
+   `find` currently matches only full words.  
+   The enhancement will allow partial matches and regular expressions, such as:
+    * `find han` matches `Hannah Ho`, `Hans Tan` and `Johan Chan`
+    * `find ^han` matches only `Hannah Ho` and `Hans Tan`
+
+6. **Find feature for appointments.**  
+   In `list-appt` and `list-appt-upcoming` view, users cannot search for appointments by any of the field.  
+   The enhancement would allow users to find specific appointments by name or by date.
 
