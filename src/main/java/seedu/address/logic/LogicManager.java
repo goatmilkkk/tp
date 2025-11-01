@@ -54,9 +54,9 @@ public class LogicManager implements Logic {
         String trimmedCommand = commandText.trim();
         if (!trimmedCommand.isEmpty()) {
             String commandWord = trimmedCommand.split("\\s+", 2)[0];
-            if ((EditAppointmentCommand.COMMAND_WORD.equals(commandWord) ||
-                    DeleteAppointmentCommand.COMMAND_WORD.equals(commandWord)) &&
-                    model.getViewMode() != ViewMode.PATIENT_APPOINTMENT_LIST) {
+            if ((EditAppointmentCommand.COMMAND_WORD.equals(commandWord)
+                    || DeleteAppointmentCommand.COMMAND_WORD.equals(commandWord))
+                    && model.getViewMode() != ViewMode.PATIENT_APPOINTMENT_LIST) {
                 throw new CommandException(Messages.MESSAGE_NOT_VIEWING_APPOINTMENT);
             }
         }
