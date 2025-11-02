@@ -591,7 +591,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: List all appointments of first patient using the `list-appt 1` command. At least 1 patient in list. At least 1 appointment in appointment list
 
    1. Test case: `delete-appt 1`  
-      Expected: First appointment of first patient delete. Details of updated patient shown in the status message.
+      Expected: First appointment of first patient gets deleted. Details of updated patient shown in the status message.
 
    1. Test case: `delete-appt 0`  
       Expected: No appointment deleted. Error details shown in status message.
@@ -718,5 +718,5 @@ However, there were also some caveats such as the selection of the patient to be
 ### View model handling
 With the new commands with realistic restrictions such as `edit-appt` requiring the UI to be viewing a patient's appointment list, checks based on what the UI was viewing had to be implemented.  
 
-Hence, a `ViewMode` enum class had to built and implemented into `ModelManager` in order to track what the user is currently viewing.  
+Hence, a `ViewMode` enum class had to be built and implemented into `ModelManager` in order to track what the user is currently viewing.  
 With this, we were able to properly restrict the usage of certain commands to their required `ViewMode`.  
