@@ -531,7 +531,7 @@ testers are expected to do more *exploratory* testing.
       Expected: No patient added. Error details shown in status message.
       
    1. Test case (invalid `NRIC`): `add n/John Doe i/A8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01`  
-      Excepted: No patient added. Error details shown in status message.
+      Expected: No patient added. Error details shown in status message.
 
 ### Editing a patient
 
@@ -567,7 +567,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: List all patients using the `list` command. At least 1 patient in list. There is no existing appointment with the same appointment timing.
 
    1. Test case: `add-appt 2 at/flu jab ad/27-02-2025, 0900`  
-      Expected: New appointment added. Details of the edited patient shown in the status message.
+      Expected: New appointment added. Details of the updated patient shown in the status message.
 
    1. Test case: `add-appt 2 at/flu jab ad/30-02-2025, 0900`  
       Expected: No appointment added. Error details shown in status message.
@@ -579,7 +579,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: List all appointments of first patient using the `list-appt 1` command. At least 1 patient in list. There is no existing appointment with the same appointment timing. At least 1 appointment in appointment list.
 
    1. Test case: `edit-appt 1 at/dental ad/02-02-2002, 0900`  
-      Expected: First appointment of first patient edited. Details of edited patient shown in the status message
+      Expected: First appointment of first patient edited. Details of updated patient shown in the status message
 
    1. Test case: `edit-appt 1`  
       Expected: No appointment edited. Error details shown in status message.
@@ -591,7 +591,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: List all appointments of first patient using the `list-appt 1` command. At least 1 patient in list. At least 1 appointment in appointment list
 
    1. Test case: `delete-appt 1`  
-      Expected: First appointment of first patient delete. Details of edited patient shown in the status message.
+      Expected: First appointment of first patient delete. Details of updated patient shown in the status message.
 
    1. Test case: `delete-appt 0`  
       Expected: No appointment deleted. Error details shown in status message.
@@ -692,7 +692,7 @@ such as:
 * Gender
 * Medical history
 
-Hence, the missing `DateOfBirth` and `Gender` classes has to be made from scratch, with reference from the existing AB3 fields (Name, Email, etc.)  
+Hence, the missing `DateOfBirth` and `Gender` classes had to be made from scratch, with reference from the existing AB3 fields (Name, Email, etc.)  
 
 While this was manageable, it required us to have an understanding of how the fields functioned and interacted with the rest of the system.  
 
@@ -712,7 +712,7 @@ The Appointment class also had to be integrated as a field of Patient, as to fit
 With a new model, there would be new commands tied to it as well  
 Hence, `add-appt`, `edit-appt`, `delete-appt` and `list-appt` were implemented.  
 
-To implement these command, we were able to reference the existing `add`, `edit`, `delete` and `list` commands.  
+To implement these commands, we were able to reference the existing `add`, `edit`, `delete` and `list` commands.  
 However, there were also some caveats such as the selection of the patient to be operated on, requiring changes in core underlying classes such as `LogicManager` and `ModelManager` to implement a `selectedPatient` field and methods such as `getSelectedPatient()`.  
 
 ### View model handling
