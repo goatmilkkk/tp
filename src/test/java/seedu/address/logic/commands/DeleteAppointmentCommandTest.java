@@ -23,6 +23,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.ViewMode;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
@@ -49,6 +50,7 @@ public class DeleteAppointmentCommandTest {
         Patient patient = model.getFilteredPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
 
         model.setSelectedPatient(patient);
+        model.setViewMode(ViewMode.PATIENT_APPOINTMENT_LIST);
 
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(INDEX_FIRST_APPOINTMENT);
 
@@ -82,6 +84,7 @@ public class DeleteAppointmentCommandTest {
         Index outOfBoundsIndex = Index.fromOneBased(patient.getAppointments().size() + 1);
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(outOfBoundsIndex);
         model.setSelectedPatient(patient);
+        model.setViewMode(ViewMode.PATIENT_APPOINTMENT_LIST);
 
         assertCommandFailure(deleteAppointmentCommand, model,
                 String.format(MESSAGE_APPOINTMENT_NOT_FOUND, outOfBoundsIndex.getOneBased()));

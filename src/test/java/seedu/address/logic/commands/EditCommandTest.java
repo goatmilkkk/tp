@@ -24,6 +24,7 @@ import seedu.address.model.DoctorBase;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.ViewMode;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
@@ -139,6 +140,17 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_notViewingPatientList_failure() {
+        model.setViewMode(ViewMode.UPCOMING_APPOINTMENT_LIST);
+
+        Patient editedPatient = new PatientBuilder().build();
+        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(editedPatient).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PATIENT, descriptor);
+
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_NOT_VIEWING_PATIENT_LIST);
     }
 
     /**

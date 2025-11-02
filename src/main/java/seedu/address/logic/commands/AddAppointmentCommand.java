@@ -13,6 +13,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ViewMode;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
@@ -54,7 +55,7 @@ public class AddAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.getSelectedPatient() != null) {
+        if (model.getViewMode() != ViewMode.PATIENT_LIST) {
             throw new CommandException(MESSAGE_NOT_VIEWING_PATIENT_LIST);
         }
 

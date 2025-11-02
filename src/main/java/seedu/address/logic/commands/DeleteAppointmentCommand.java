@@ -10,6 +10,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ViewMode;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
@@ -20,7 +21,7 @@ public class DeleteAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-appt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an appointment from the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an appointment from DoctorBase.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -44,7 +45,7 @@ public class DeleteAppointmentCommand extends Command {
         requireNonNull(model);
         Patient targetPatient = model.getSelectedPatient();
 
-        if (targetPatient == null) {
+        if (model.getViewMode() != ViewMode.PATIENT_APPOINTMENT_LIST) {
             throw new CommandException(MESSAGE_NOT_VIEWING_APPOINTMENT);
         }
 

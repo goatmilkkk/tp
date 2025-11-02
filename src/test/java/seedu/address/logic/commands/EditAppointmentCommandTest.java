@@ -20,6 +20,7 @@ import seedu.address.model.DoctorBase;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.ViewMode;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
@@ -31,6 +32,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_allFieldsSpecified_success() {
         model.setSelectedPatient(BENSON);
+        model.setViewMode(ViewMode.PATIENT_APPOINTMENT_LIST);
 
         // change both title and dateTime
         Appointment editedAppointment = new AppointmentBuilder().withTitle("new disease")
@@ -61,6 +63,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_someFieldsSpecified_success() {
         model.setSelectedPatient(BENSON);
+        model.setViewMode(ViewMode.PATIENT_APPOINTMENT_LIST);
 
         // only change dateTime
         Appointment editedAppointment = new AppointmentBuilder()
@@ -91,6 +94,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_noFieldSpecified_success() {
         model.setSelectedPatient(BENSON);
+        model.setViewMode(ViewMode.PATIENT_APPOINTMENT_LIST);
 
         // no change
         Appointment editedAppointment = new AppointmentBuilder().build();
@@ -118,9 +122,8 @@ public class EditAppointmentCommandTest {
     }
 
     @Test
-    public void execute_selectedPatientNull_throwsCommandException() {
-        // Set selectedPatient to null to indicate not viewing Appointments
-        model.setSelectedPatient(null);
+    public void execute_viewingPatientList_throwsCommandException() {
+        model.setViewMode(ViewMode.PATIENT_LIST);
 
         Appointment editedAppointment = new AppointmentBuilder().build();
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(editedAppointment).build();
@@ -164,6 +167,8 @@ public class EditAppointmentCommandTest {
     @Test
     public void invalidIndexTest_fail() {
         model.setSelectedPatient(BENSON);
+        model.setViewMode(ViewMode.PATIENT_APPOINTMENT_LIST);
+
         Index invalid = Index.fromZeroBased(model.getSelectedPatient().getAppointments().size());
         Appointment editedAppointment = new AppointmentBuilder().withTitle("new disease")
                 .withDateTime("07-10-2025, 1530").build();
@@ -176,6 +181,8 @@ public class EditAppointmentCommandTest {
     @Test
     public void duplicateTimingTest_fail() {
         model.setSelectedPatient(BENSON);
+        model.setViewMode(ViewMode.PATIENT_APPOINTMENT_LIST);
+
         // change both title and dateTime
         Appointment editedAppointment = new AppointmentBuilder().withTitle("new disease")
                 .withDateTime("07-10-2025, 1530").build();
@@ -188,6 +195,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void duplicateTimingSameAppointmentTest_success() {
         model.setSelectedPatient(BENSON);
+        model.setViewMode(ViewMode.PATIENT_APPOINTMENT_LIST);
 
         // only change dateTime
         Appointment editedAppointment = new AppointmentBuilder()
@@ -218,6 +226,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void toStringTest() {
         model.setSelectedPatient(BENSON);
+        model.setViewMode(ViewMode.PATIENT_APPOINTMENT_LIST);
 
         Appointment editedAppointment = new AppointmentBuilder().withTitle("new disease")
                 .withDateTime("20-02-2002, 0900").build();

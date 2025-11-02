@@ -24,6 +24,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.ViewMode;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Title;
 import seedu.address.model.patient.Patient;
@@ -141,7 +142,7 @@ public class AddAppointmentCommandTest {
     public void execute_selectedPatientNotNull_throwsCommandException() {
         Patient patient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         // Set selected patient to indicate already viewing
-        model.setSelectedPatient(patient);
+        model.setViewMode(ViewMode.PATIENT_APPOINTMENT_LIST);
         AddAppointmentCommand command = new AddAppointmentCommand(INDEX_FIRST_PATIENT, VALID_APPOINTMENT);
 
         assertCommandFailure(command, model, AddAppointmentCommand.MESSAGE_NOT_VIEWING_PATIENT_LIST);

@@ -3,35 +3,13 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-- [**Acknowledgements**](#acknowledgements)
-- [**Setting up, getting started**](#setting-up-getting-started)
-- [**Design**](#design)
-  - [Architecture](#architecture)
-  - [UI component](#ui-component)
-  - [Logic component](#logic-component)
-  - [Model component](#model-component)
-  - [Storage component](#storage-component)
-  - [Common classes](#common-classes)
-- [**Implementation**](#implementation)
-- [Some features](#some-features)
-  - [Adding appointment feature](#adding-appointment-feature)
-  - [Deleting appointment feature](#deleting-appointment-feature)
-- [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
-- [**Appendix: Requirements**](#appendix-requirements)
-  - [Product scope](#product-scope)
-  - [User stories](#user-stories)
-  - [Use cases](#use-cases)
-  - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
-- [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
-  - [Launch and shutdown](#launch-and-shutdown)
-  - [Deleting a patient](#deleting-a-patient)
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* [AddressBook-Level3 (AB3)] (https://se-education.org/addressbook-level3/)
+* Based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -187,10 +165,6 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-## Some features
-For parsing the commands entered by the user, some examples are the AddAppointmentCommandParser and DeleteAppointmentCommandParser.  
-They are used to extract the appointment information provided, along with the index of the patient to operate on.
 
 ### Adding appointment feature
 
@@ -355,11 +329,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>
 
 
-**Use case: UC5 - List appointment**
+**Use case: UC5 - List patient's appointments**
 
 **MSS**
 
-1. User chooses to view a list of existing appointments 
+1. User chooses to view a list of existing appointments for a specific patient
+2. DoctorBase shows the list of existing appointments to User  
+   Use case ends.
+
+**Extensions**
+
+* 1a. DoctorBase detects that the given INDEX does not correspond to any patient in the current list
+    * 1a1. DoctorBase rejects command and does nothing  
+      Use case ends.
+  
+* 2a. DoctorBase detects no entries in list  
+  Use case ends.
+
+<br>
+
+**Use case: UC6 - List all upcoming appointments**
+
+**MSS**
+
+1. User chooses to view the list of all upcoming appointments
 2. DoctorBase shows the list of existing appointments to User  
    Use case ends.
 
@@ -370,7 +363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case: UC6 - Delete appointment**
+**Use case: UC7 - Delete appointment**
 
 **MSS**
 
@@ -387,6 +380,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
+**Use case: UC8 - Find patient by name**
+
+**MSS**
+
+1. User chooses to find patients by name in DoctorBase  
+2. DoctorBase lists all patients whose names contain any of the given keywords (case-insensitive, full-word match)  
+   Use case ends.
+
+**Extensions**
+
+* 1a. No keyword is entered  
+  * 1a1. DoctorBase rejects the command and does nothing  
+  Use case ends.
+
+* 2a. No patient names match the given keywords  
+  * 2a1. DoctorBase displays an empty list.
+  Use case ends.
+
+<br>
+
+**Use case: UC9 - Edit patient**
+
+**MSS**
+
+1. User chooses to edit a patient’s details.  
+2. DoctorBase updates the patient’s record with the new details.  
+   Use case ends.
+
+**Extensions**
+
+* 2a. DoctorBase detects an invalid patient index  
+  * 2a1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2b. User provides no fields to edit  
+  * 2b1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2c. DoctorBase detects a duplicate patient after editing  
+  * 2c1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+<br>
+
+**Use case: UC10 - Edit appointment**
+
+**MSS**
+
+1. User chooses to edit a patient’s appointment.  
+2. DoctorBase updates the appointment with the new details.  
+   Use case ends.
+
+**Extensions**
+
+* 1a. User is not currently viewing a patient’s appointment list  
+  * 1a1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2a. DoctorBase detects an invalid appointment index  
+  * 2a1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2b. User provides no fields to edit  
+  * 2b1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2c. DoctorBase detects a clashing appointment time  
+  * 2c1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+
 ### Non-Functional Requirements
 
 * The system should respond within 2 seconds (performance)
@@ -402,6 +466,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Solo doctor**: A doctor that takes care of patients under them by themselves with no other assistance
 * **Patient**: A person that receives care and has appointments with the solo doctor
 * **Appointment**: A scheduled medical meeting between the patient and the solo doctor
+* **JSON (JavaScript Object Notation)**: The file format the application uses to store patient and appointment details
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -443,4 +508,63 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)  
       Expected: Similar to previous.
+
+### Saving data
+
+1. Dealing with missing data files.
+
+   1. From the initial sample data, run any valid command to initiate a save to the data file.
+
+   2. Close the application.
+   
+   3. Delete the data file and re-launch the application.  
+      Expected: DoctorBase will start with the sample data again.
+
+2. Dealing with corrupted data files.
+   
+   1. From the initial sample data, run any valid command to initiate a save to the data file.
+   
+   2. Close the application.
+   
+   3. Modify `data/doctorBase.json` to corrupt it.  
+   E.g. Modify `patients` to `patient`  
+   Expected: DoctorBase will start with no data. The data file will only be updated when a save is initiated.
+
+## **Appendix: Planned Enhancements**
+
+### Team Size: 5
+
+1. **Support for special characters in Patient Names.**  
+   Currently, special characters (e.g. `/`, `ö`, `'`, etc.) are not accepted as valid inputs for Patient names.  
+   The enhancement will expand input validation to support UTF-8 character sets, allowing more realistic patient names.
+
+2. **Support for Patients without NRIC.**  
+   Current implementation requires all patients to have a valid Singapore NRIC.  
+   The enhancement will relax this constraint and accept alternative identifiers such as Passport numbers or Foreign 
+   ICs.
+
+3. **Improve error message handling when in wrong view.**  
+   When in the wrong view, error messages indicating that the user should be in another view is only displayed if 
+   the commands are typed with correct parameters.  
+   The enhancement will display the Wrong View error message as long 
+   as the command word is inputted and in the wrong view.
+
+4. **Support Appointment Commands when in Upcoming Appointments view.**  
+   Users cannot delete or edit appointments directly from the `list-appt-upcoming` view.  
+   The enhancement will track the patient-appointment mapping internally, allowing: 
+   ```
+   list-appt-upcoming
+   delete-appt 1
+   edit-appt 2 ad/02-02-2026, 1500
+   ```
+
+5. **More flexible `find` Command using Regex/Partial.**  
+   `find` currently matches only full words.  
+   The enhancement will allow partial matches and regular expressions, such as:
+    * `find han` matches `Hannah Ho`, `Hans Tan` and `Johan Chan`
+    * `find ^han` matches only `Hannah Ho` and `Hans Tan`
+
+6. **Find feature for appointments.**  
+   In `list-appt` and `list-appt-upcoming` view, users cannot search for appointments by any of the field.  
+   The enhancement would allow users to find specific appointments by name or by date.
 

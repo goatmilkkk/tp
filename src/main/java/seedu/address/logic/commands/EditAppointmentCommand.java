@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
@@ -16,6 +17,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ViewMode;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Title;
 import seedu.address.model.patient.Patient;
@@ -59,11 +61,11 @@ public class EditAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Patient targetPatient = model.getSelectedPatient();
-        if (targetPatient == null) {
+        if (model.getViewMode() != ViewMode.PATIENT_APPOINTMENT_LIST) {
             throw new CommandException(MESSAGE_NOT_VIEWING_APPOINTMENT);
         }
 
+        Patient targetPatient = model.getSelectedPatient();
         ArrayList<Appointment> updatedAppointments = new ArrayList<>(
                 targetPatient.getAppointments());
 
@@ -85,6 +87,12 @@ public class EditAppointmentCommand extends Command {
         }
 
         updatedAppointments.set(index.getZeroBased(), editedAppointment);
+
+        // Sorts appointment list to display upcoming first and past appointments after
+        LocalDateTime now = LocalDateTime.now();
+        updatedAppointments.sort(Comparator
+                .comparing((Appointment appt) -> appt.getDateTime().isBefore(now))
+                .thenComparing(Appointment::getDateTime));
 
         Patient newPatient = new Patient(targetPatient.getName(),
                 targetPatient.getNric(),
