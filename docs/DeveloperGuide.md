@@ -679,6 +679,14 @@ testers are expected to do more *exploratory* testing.
    In `list-appt` and `list-appt-upcoming` view, users cannot search for appointments by any of the field.  
    The enhancement would allow users to find specific appointments by name or by date.
 
+7. **Preserve filtered context after `edit` command.**
+   When users execute certain commands such as `edit` after using `find`, the app resets to show the full Patients view.  
+   The enhancement will retain the filtered context after such commands, ensuring that the view remains focused on the filtered subset.
+
+8. **Notes-taking feature for Appointments.**
+   Currently, appointment entries only store basic details such as appointment title, date and time.  
+   The enhancement will allow users to add and view short text notes for each appointment, such as consultation summaries and follow-up reminders.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
