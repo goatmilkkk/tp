@@ -96,6 +96,7 @@ With simple commands, you can add patients, schedule appointments, search record
         * e.g. `delete 2` deletes the 2nd patient only when the **patient list** is displayed.
         * e.g. `delete-appt 2` deletes the 2nd appointment only when the **appointment list** is displayed.
 
+
 * Parameters can appear in any order.  
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -105,7 +106,7 @@ With simple commands, you can add patients, schedule appointments, search record
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
----
+
 
 ## **General commands**
 
@@ -117,7 +118,9 @@ Opens a window that shows a summary of all available commands and a link to this
 
 **Format:** `help`
 
-> **:bulb: Tip:** You can also press **F1** on your keyboard to open the help window.
+<div class="alert alert-info" markdown="1">
+**:bulb: Tip:** You can also press **F1** on your keyboard to open the help window.
+</div>
 
 
 ### Exiting the program : `exit`
@@ -152,6 +155,7 @@ Useful when you take in a new patient under your care.
 
 <div class="alert alert-info" markdown="1">
 :bulb: **Tip:** You can add multiple medical histories by repeating the `mh/` field as needed. You can also choose to add none.  
+<br>
 :information_source: **Info:** PHONE_NUMBER` and `EMAIL` duplicates are allowed for patients using guardians' or parents' contact details
 </div> 
 **Examples:**
@@ -159,7 +163,8 @@ Useful when you take in a new patient under your care.
 * `add n/Betsy Crowe i/T0231512Z g/f d/02-12-2001 mh/covid e/betsycrowe@example.com a/Newgate Prison p/1234567 mh/leg fracture mh/G6PD`
 
 <div class="alert alert-danger" markdown="1">
-:x: **Note** Ensure that a **unique** `Nric` is provided. Else, the patient will be considered a duplicate, and an error message will be shown.
+:exclamation: **Note:** Ensure that a **unique** `Nric` is provided. Else, the patient will be considered a duplicate, 
+and an error message will be shown.
 </div>
 
 
@@ -171,8 +176,9 @@ Shows the full patient list currently in DoctorBase.
 
 **Format:** `list`
 
-> **:information_source: Note:** Only the first 3 upcoming appointments will be shown in the patient view
-
+<div class="alert alert-info" markdown="1">
+**:information_source: Note:** Only the first 3 upcoming appointments will be shown in the patient view
+</div>
 
 ### Locating patients by name: `find`
 
@@ -232,6 +238,8 @@ Can only be used while viewing a list of patients. Run `list` to do so.
 :warning: **Caution:** This action **cannot be undone**!
 </div>
 
+
+
 ## **Appointment Commands**
 
 ### Adding an appointment : `add-appt`
@@ -257,13 +265,14 @@ Can only be used while viewing a list of patients. Run `list` to do so.
 Shows every future appointments across all patients, sorted by date.   
 Useful when you want to keep track of your upcoming schedule.
 
+![list appointment upcoming](images/listApptUpcomingExample.png)
+
 **Format:** `list-appt-upcoming`
 
 <div class="alert alert-info" markdown="1">
 :information_source: **Note:** No commands other than `add` and `list` can be run in this view model
 </div>
 
-![list appointment upcoming](images/listApptUpcomingExample.png)
 
 
 ### Listing all appointments of patient : `list-appt`
@@ -282,10 +291,6 @@ Can only be used while viewing a list of patients. Run `list` to do so.
 
 ![list appointment](images/listApptExample.png)
 
-<div class="alert alert-info" markdown="1">
-:information_source: **Note:** After using `list-appt [INDEX]`, all other appointment-related commands (edit, delete, etc.) will refer to this list.
-</div>
-
 
 ### Editing an appointment : `edit-appt`
 
@@ -301,9 +306,10 @@ Can only be used while viewing the appointments of a patient. Run `list-appt IND
 * `edit-appt 1 at/dental ad/02-02-2002, 0900` edits the 1st appointment in the appointments list for the selected patient
 * `edit-appt 2 ad/20-12-2025, 1200` edits the 2nd appointment in the appointments list for the selected patient
 
-**Note**
-- This command only works in appointments view (i.e. `list-appt INDEX` has to be ran first)
 
+<div class="alert alert-info" markdown="1">
+:information_source: **Note:** This command only works in appointments view (i.e. `list-appt INDEX` has to be ran first)
+</div>
 
 ### Deleting an appointment : `delete-appt`
 
@@ -316,11 +322,14 @@ Can only be used while viewing the appointments of a patient. Run `list-appt IND
 * `delete-appt 1` deletes the 1st appointment in the appointments list for the selected patient
 * `delete-appt 3` deletes the 3rd appointment in the appointments list for the selected patient
 
-**Note**
-- This command only works in appointments view (i.e. `list-appt INDEX` has to be ran first)
+<div class="alert alert-info" markdown="1">
+:information_source: **Note:** This command only works in appointments view (i.e. `list-appt INDEX` has to be ran first)
+</div>
 
+<div class="alert alert-warning" markdown="1">
+:warning:  **Caution:** This action **cannot be undone**!
+</div>
 
----
 
 ## **Extra features**
 
