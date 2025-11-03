@@ -16,6 +16,7 @@ With simple commands, you can add patients, schedule appointments, search record
    * [General Commands](#general-commands)
    * [Patient Commands](#patient-commands)
    * [Appointment Commands](#appointment-commands)
+   * [Extra features](#extra-features)
 3. [FAQ](#faq)
 4. [Known issues](#known-issues)
 5. [Command summary](#command-summary)
@@ -108,7 +109,7 @@ With simple commands, you can add patients, schedule appointments, search record
 
 
 
-## **General commands**
+## **General Commands**
 
 ### Viewing help : `help`
 
@@ -140,7 +141,7 @@ Useful if you want to restart with a clean database.
 :warning:  **Caution:** This action **cannot be undone**!
 </div>
 
-## Patient Commands
+## **Patient Commands**
 
 ### Adding a patient : `add`
 
