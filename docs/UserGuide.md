@@ -156,14 +156,14 @@ Useful when you take in a new patient under your care.
 <div class="alert alert-info" markdown="1">
 :bulb: **Tip:** You can add multiple medical histories by repeating the `mh/` field as needed. You can also choose to add none.  
 <br>
-:information_source: **Info:** PHONE_NUMBER` and `EMAIL` duplicates are allowed for patients using guardians' or parents' contact details
+:information_source: **Info:** `PHONE_NUMBER` and `EMAIL` duplicates are allowed for patients using guardians' or parents' contact details
 </div> 
 **Examples:**
 * `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01`
 * `add n/Betsy Crowe i/T0231512Z g/f d/02-12-2001 mh/covid e/betsycrowe@example.com a/Newgate Prison p/1234567 mh/leg fracture mh/G6PD`
 
 <div class="alert alert-danger" markdown="1">
-:exclamation: **Note:** Ensure that a **unique** `Nric` is provided. Else, the patient will be considered a duplicate, 
+:exclamation: **Note:** Ensure that a **unique** `NRIC` is provided. Else, the patient will be considered a duplicate, 
 and an error message will be shown.
 </div>
 
@@ -393,7 +393,8 @@ If that does not solve the issue, please redownload the latest `.jar` file (rele
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the Graphical User Interface(GUI) will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **When entering parameters**, you are unable to add special characters into your parameter. However, you are allowed to use hyphen, `-`, in your MedicalHistory  
-   e.g. if the parameter is `n/Hiller s/o Tim`, the `NAME` input will be rejected. To remedy this, please use a whitespace instead.
+   e.g. if the parameter is `n/Hiller s/o Tim`, the `NAME` input will be rejected. To remedy this, please omit 
+   the `/` instead.
 3. **For foreigner patients**, we are unable to use this app as they do not have an `NRIC`. Unfortunately this cannot be remedied at this point in time.
 
 --------------------------------------------------------------------------------------------------------------------
