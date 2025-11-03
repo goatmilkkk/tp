@@ -44,7 +44,7 @@ With simple commands, you can add patients, schedule appointments, search record
 
 4. Open the terminal and navigate to that folder
    * Open Terminal (Mac/Linux) or Command Prompt (Windows)
-   * Navigate to your folder using cd, like this:
+   * Navigate to your folder (eg, Documents/doctorBase) using cd, like this:
      * macOS/Linux:
        ````
        cd ~/Documents/doctorbase
@@ -81,20 +81,20 @@ With simple commands, you can add patients, schedule appointments, search record
 **:information_source: Notes about the command format:**
 
 * Words in `UPPER_CASE` are user-supplied parameters.  
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be modified like so: `add n/John Doe`.
 
 * Items in `[square brackets]` are optional.  
   e.g `n/NAME [mh/MEDICAL_HISTORY]` can be used as `n/John Doe mh/cancer` or as `n/John Doe`.
 
-* Items ending with `…` can be used multiple times including zero times.  
-  e.g. `[mh/MEDICAL_HISTORY]…​` can be used as ` ` (i.e. 0 times), `mh/cancer`, `mh/cancer mh/covid` etc.
+* Items ending with `…` can be used any number of times (including 0 times).  
+  e.g. `[mh/MEDICAL_HISTORY]…​` can be used as ` ` (0 times), `mh/cancer`, `mh/cancer mh/covid` etc.
 
-* `INDEX` refers to the number shown beside a patient or appointment in the displayed list.
+* `INDEX` refers to the number shown beside a patient or appointment in the currently displayed list.
     * `INDEX` **must be a positive integer** (`1, 2, 3, …`)
-    * After using commands like `find`, the displayed list changes so the `INDEX` changes too.
-    * Commands that use `INDEX` depend on the list currently displayed:
+    * After using certain commands like `find`, the patient/appointment's `INDEX` may change in line with the displayed list.
+    * Commands that use `INDEX` refer to the list currently displayed:
         * e.g. `delete 2` deletes the 2nd patient only when the **patient list** is displayed.
-        * e.g. `delete-appt 2` deletes the 2nd appointment only when the **appointment list** is displayed.
+        * e.g. `delete-appt 2` deletes the 2nd appointment of a patient only when their **appointment list** is displayed.
 
 * Parameters can appear in any order.  
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -102,7 +102,7 @@ With simple commands, you can add patients, schedule appointments, search record
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `list-appt-upcoming`, `exit` and `clear`) will be ignored.  
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines. Space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
 ---
@@ -129,7 +129,7 @@ Exits the program.
 
 ### Clearing all entries : `clear`
 
-Removes **all patients and appointments** at once.  
+Removes **all patients and appointments** from DoctorBase.  
 Useful if you want to restart with a clean database.
 
 **Format:** `clear`
@@ -147,8 +147,10 @@ Useful when you take in a new patient under your care.
 
 **Format:** `add n/NAME i/NRIC g/GENDER p/PHONE_NUMBER e/EMAIL d/DATE_OF_BIRTH a/ADDRESS [mh/MEDICAL_HISTORY]…​`
 * `DATE_OF_BIRTH` uses the format `dd-mm-yyyy`, and cannot be a future date.
-* `PHONE_NUMBER` should only include numbers. eg. `12345678`.
-* `NAME` should not include special characters, such as `/`.
+* `PHONE_NUMBER` should be 3-15 numbers. eg. `12345678`.
+* `NAME` should be 1-80 alphanumeric characters, and cannot include special characters such as `/`.
+* `GENDER` should be male ('m'), female ('f'), or other ('o')
+* Each `MEDICAL_HISTORY` entry should be 1-50 alphanumeric characters.
 
 <div class="alert alert-info" markdown="1">
 :bulb: **Tip:** You can add multiple medical histories by repeating the `mh/` field as needed. You can also choose to add none.  
