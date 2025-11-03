@@ -40,11 +40,11 @@ With simple commands, you can add patients, schedule appointments, search record
    * Download the latest `.jar` file (release) from [here](https://github.com/AY2526S1-CS2103T-W10-3/tp/releases).
 
 3. Choose a Home Folder to store your data
-   * Move the .jar file to the folder where you’d like DoctorBase to save your data.
+   * Move the `.jar` file to the folder where you’d like DoctorBase to save your data.
 
 4. Open the terminal and navigate to that folder
    * Open Terminal (Mac/Linux) or Command Prompt (Windows)
-   * Navigate to your folder using cd, like this:
+   * Navigate to your folder using `cd`, like this:
      * macOS/Linux:
        ````
        cd ~/Documents/doctorbase
@@ -356,28 +356,28 @@ Furthermore, certain edits can cause the DoctorBase to behave in unexpected ways
 ## **FAQ**
 
 **Q**: How do I transfer my data to another Computer?  
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous `DoctorBase` home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **DoctorBase** home folder.
 
 **Q**: What happens if I accidentally type in the wrong parameters?   
 **A**: Do not worry, the application will pick up invalid parameters and tell you what was the issue and will not update the patient/appointment list.
 
 **Q**: Can I undo a mistaken deletion?  
-**A**: `DoctorBase` does not currently support an undo feature. Once a patient or appointment is deleted, it is permanently removed. We recommend making sure the correct patient or appointment is selected before running delete or delete-appt.
+**A**: **DoctorBase** does not currently support an undo feature. Once a patient or appointment is deleted, it is permanently removed. We recommend making sure the correct patient or appointment is selected before running delete or delete-appt.
 
-**Q**: Can I use `DoctorBase` without an internet connection?  
-**A**: Yes. `DoctorBase` works fully offline. Your data is stored locally on your computer and does not require internet access.
+**Q**: Can I use **DoctorBase** without an internet connection?  
+**A**: Yes. **DoctorBase** works fully offline. Your data is stored locally on your computer and does not require internet access.
 
 **Q**: Where is my data stored?  
-**A**: `DoctorBase` stores your data in a file named `doctorBase.json` inside the `data` folder, located where the .jar file is run.
+**A**: **DoctorBase** stores your data in a file named `doctorBase.json` inside the `data` folder, located where the `.jar` file is run.
 
-**Q**: Can I change where `DoctorBase` stores its data?  
-**A**: Yes. Simply move your .jar file to a different folder and re-run it. `DoctorBase` will then create and store the data in a `data/` folder, relative to the new .jar location.
+**Q**: Can I change where **DoctorBase** stores its data?  
+**A**: Yes. Simply move your `.jar` file to a different folder and re-run it. **DoctorBase** will then create and store the data in a `data/` folder, relative to the new `.jar` location.
 
-**Q**: Can I run `DoctorBase` on multiple computers?  
-**A**: Yes. Just copy your `doctorBase.json` file to another machine running `DoctorBase`. As long as both computers have Java 17 or higher, your data will load normally.
+**Q**: Can I run **DoctorBase** on multiple computers?  
+**A**: Yes. Just copy your `doctorBase.json` file to another machine running **DoctorBase**. As long as both computers have Java 17 or higher, your data will load normally.
 
 **Q**: Can two patients share the same name?  
-**A**: Yes, but their NRICs must be unique as `DoctorBase` uses their NRIC to differentiate between patients.
+**A**: Yes, but their NRICs must be unique as **DoctorBase** uses their NRIC to differentiate between patients.
 
 --------------------------------------------------------------------------------------------------------------------
 
