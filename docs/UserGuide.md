@@ -153,7 +153,7 @@ Useful when you take in a new patient under your care.
 * `PHONE_NUMBER` should be 3-15 numbers. e.g `12345678`.
 * `NAME` should be 1-80 alphanumeric characters, and cannot include special characters such as `/`.
 * `GENDER` should be male ('m'), female ('f'), or other ('o')
-* Each `MEDICAL_HISTORY` entry should be 1-50 alphanumeric characters.
+* Each `MEDICAL_HISTORY` entry should be 1-50 alphanumeric characters, or hyphen (`-`).
 
 <div class="alert alert-info" markdown="1">
 :bulb: **Tip:** You can add multiple medical histories by repeating the `mh/` field as needed. You can also choose to add none.  
@@ -355,19 +355,19 @@ Furthermore, certain edits can cause DoctorBase to behave in unexpected ways (e.
 **A**: Install DoctorBase in the other computer and overwrite the empty JSON file it creates with the JSON file in your current device's **DoctorBase**.
 
 **Q**: What happens if I accidentally type in the wrong parameters?   
-**A**: Do not worry, the application will pick up invalid parameters and tell you what was the issue and will not update the patient/appointment list.
+**A**: Do not worry, **DoctorBase** will notify you of any invalid parameters without updating the patient/appointment list. Any erroneous parameters can also be amended with the `edit`/`edit-appt` command.
 
-**Q**: Can I undo a mistaken deletion?  
-**A**: **DoctorBase** does not currently support an undo feature. Once a patient or appointment is deleted, it is permanently removed. We recommend making sure the correct patient or appointment is selected before running delete or delete-appt.
+**Q**: Can I undo an accidental deletion?  
+**A**: **DoctorBase** does not currently support an undo feature. Once a patient or appointment is deleted, it is permanently removed. We recommend making sure that the correct patient or appointment is selected before running `delete` or `delete-appt`.
 
 **Q**: Can I use **DoctorBase** without an internet connection?  
 **A**: Yes. **DoctorBase** works fully offline. Your data is stored locally on your computer and does not require internet access.
 
 **Q**: Where is my data stored?  
-**A**: **DoctorBase** stores your data in a file named `doctorBase.json` inside the `data` folder, located where the `.jar` file is run.
+**A**: **DoctorBase** stores your data in a file named `doctorBase.json`, within the `data` folder located where the `.jar` file is run.
 
 **Q**: Can I change where **DoctorBase** stores its data?  
-**A**: Yes. Simply move your `.jar` file to a different folder and re-run it. **DoctorBase** will then create and store the data in a `data/` folder, relative to the new `.jar` location.
+**A**: Yes. Simply move your `.jar` file to a different folder and re-run it. **DoctorBase** will then create and store data in a new `data/` folder at the new `.jar` location.
 
 **Q**: Can I run **DoctorBase** on multiple computers?  
 **A**: Yes. Just copy your `doctorBase.json` file to another machine running **DoctorBase**. As long as both computers have Java 17 or higher, your data will load normally.
@@ -379,19 +379,19 @@ Furthermore, certain edits can cause DoctorBase to behave in unexpected ways (e.
 
 ## **Troubleshooting**
 
-**Q**: The application does not start  
-**A**: Please check your current version of java is 17, following the requirements specified by step 1 of [QuickStart](#quick-start)   
-If that does not solve the issue, please redownload the latest `.jar` file (release) from [here](https://github.com/AY2526S1-CS2103T-W10-3/tp/releases) and try again.
+**Q**: The application does not start.  
+**A**: Please ensure that the current version of Java is 17, following the requirements specified in Step 1 of [QuickStart](#quick-start).  
+If that does not resolve the issue, please redownload the latest `.jar` file (release) from [here](https://github.com/AY2526S1-CS2103T-W10-3/tp/releases) and try again.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Known issues**
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the Graphical User Interface(GUI) will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **When entering parameters**, you are unable to add special characters into your parameter. However, you are allowed to use hyphen, `-`, in your MedicalHistory  
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the Graphical User Interface (GUI) will open off-screen. The remedy is to delete the `preferences.json` file created by **DoctorBase** before running it again.
+2. **When entering parameters**, you are unable to use special characters. However, you are allowed to use hyphen, `-`, in your MedicalHistory.  
    e.g. if the parameter is `n/Hiller s/o Tim`, the `NAME` input will be rejected. To remedy this, please omit
    the `/` instead.
-3. **For foreigner patients**, we are unable to use this app as they do not have an `NRIC`. Unfortunately this cannot be remedied at this point in time.
+3. **Patients who are foreigners** are not supported by **DoctorBase** as they do not have an `NRIC`. Unfortunately, this currently cannot be remedied.
 
 --------------------------------------------------------------------------------------------------------------------
 
