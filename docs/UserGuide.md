@@ -96,6 +96,7 @@ With simple commands, you can add patients, schedule appointments, search record
         * e.g. `delete 2` deletes the 2nd patient only when the **patient list** is displayed.
         * e.g. `delete-appt 2` deletes the 2nd appointment only when the **appointment list** is displayed.
 
+
 * Parameters can appear in any order.  
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -105,7 +106,7 @@ With simple commands, you can add patients, schedule appointments, search record
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
----
+
 
 ## **General commands**
 
@@ -117,8 +118,9 @@ Opens a window that shows a summary of all available commands and a link to this
 
 **Format:** `help`
 
-> **:bulb: Tip:** You can also press **F1** on your keyboard to open the help window.
-
+<div class="alert alert-info" markdown="1">
+**:bulb: Tip:** You can also press **F1** on your keyboard to open the help window.
+</div>
 
 ### Exiting the program : `exit`
 
@@ -237,6 +239,7 @@ Can only be used while viewing a list of patients. Run `list` to do so.
 :warning: **Caution:** This action **cannot be undone**!
 </div>
 
+
 ## **Appointment Commands**
 
 ### Adding an appointment : `add-appt`
@@ -262,13 +265,14 @@ Can only be used while viewing a list of patients. Run `list` to do so.
 Shows every future appointment across all patients, sorted by date.   
 Useful when you want to keep track of your upcoming schedule.
 
+![list appointment upcoming](images/listApptUpcomingExample.png)
+
+
 **Format:** `list-appt-upcoming`
 
 <div class="alert alert-info" markdown="1">
 :information_source: **Note:** No commands other than `add` and `list` can be run while displaying this.
 </div>
-
-![list appointment upcoming](images/listApptUpcomingExample.png)
 
 
 ### Listing all appointments of patient : `list-appt`
@@ -287,10 +291,6 @@ Can only be used while viewing a list of patients. Run `list` to do so.
 
 ![list appointment](images/listApptExample.png)
 
-<div class="alert alert-info" markdown="1">
-:information_source: **Note:** After using `list-appt [INDEX]`, all other appointment-related commands (edit, delete, etc.) will refer to this list.
-</div>
-
 
 ### Editing an appointment : `edit-appt`
 
@@ -306,6 +306,9 @@ Can only be used while viewing the appointments of a patient. Run `list-appt IND
 * `edit-appt 1 at/dental ad/02-02-2002, 0900` edits the 1st appointment in the currently displayed appointment list.
 * `edit-appt 2 ad/20-12-2025, 1200` edits the 2nd appointment in the currently displayed appointment list.
 
+<div class="alert alert-info" markdown="1">
+:information_source: **Note:** This command only works in appointments view (i.e. `list-appt INDEX` has to be ran first)
+</div>
 
 ### Deleting an appointment : `delete-appt`
 
@@ -318,8 +321,10 @@ Can only be used while viewing the appointments of a patient. Run `list-appt IND
 * `delete-appt 1` deletes the 1st appointment in the currently displayed appointment list.
 * `delete-appt 3` deletes the 3rd appointment in the currently displayed appointment list.
 
+<div class="alert alert-warning" markdown="1">
+:warning:  **Caution:** This action **cannot be undone**!
+</div>
 
----
 
 ## **Extra features**
 
@@ -346,28 +351,28 @@ Furthermore, certain edits can cause DoctorBase to behave in unexpected ways (e.
 ## **FAQ**
 
 **Q**: How do I transfer my data to another computer?  
-**A**: Install DoctorBase in the other computer and overwrite the empty JSON file it creates with the JSON file in your current device's `DoctorBase`.
+**A**: Install DoctorBase in the other computer and overwrite the empty JSON file it creates with the JSON file in your current device's **DoctorBase**.
 
 **Q**: What happens if I accidentally type in the wrong parameters?   
 **A**: Do not worry, the application will pick up invalid parameters and tell you what was the issue and will not update the patient/appointment list.
 
 **Q**: Can I undo a mistaken deletion?  
-**A**: `DoctorBase` does not currently support an undo feature. Once a patient or appointment is deleted, it is permanently removed. We recommend making sure the correct patient or appointment is selected before running delete or delete-appt.
+**A**: **DoctorBase** does not currently support an undo feature. Once a patient or appointment is deleted, it is permanently removed. We recommend making sure the correct patient or appointment is selected before running delete or delete-appt.
 
-**Q**: Can I use `DoctorBase` without an internet connection?  
-**A**: Yes. `DoctorBase` works fully offline. Your data is stored locally on your computer and does not require internet access.
+**Q**: Can I use **DoctorBase** without an internet connection?  
+**A**: Yes. **DoctorBase** works fully offline. Your data is stored locally on your computer and does not require internet access.
 
 **Q**: Where is my data stored?  
-**A**: `DoctorBase` stores your data in a file named `doctorBase.json` inside the `data` folder, located where the .jar file is run.
+**A**: **DoctorBase** stores your data in a file named `doctorBase.json` inside the `data` folder, located where the `.jar` file is run.
 
-**Q**: Can I change where `DoctorBase` stores its data?  
-**A**: Yes. Simply move your .jar file to a different folder and re-run it. `DoctorBase` will then create and store the data in a `data/` folder, relative to the new .jar location.
+**Q**: Can I change where **DoctorBase** stores its data?  
+**A**: Yes. Simply move your `.jar` file to a different folder and re-run it. **DoctorBase** will then create and store the data in a `data/` folder, relative to the new `.jar` location.
 
-**Q**: Can I run `DoctorBase` on multiple computers?  
-**A**: Yes. Just copy your `doctorBase.json` file to another machine running `DoctorBase`. As long as both computers have Java 17 or higher, your data will load normally.
+**Q**: Can I run **DoctorBase** on multiple computers?  
+**A**: Yes. Just copy your `doctorBase.json` file to another machine running **DoctorBase**. As long as both computers have Java 17 or higher, your data will load normally.
 
 **Q**: Can two patients share the same name?  
-**A**: Yes, but their NRICs must be unique as `DoctorBase` uses their NRIC to differentiate between patients.
+**A**: Yes, but their NRICs must be unique as **DoctorBase** uses their NRIC to differentiate between patients.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -383,7 +388,8 @@ If that does not solve the issue, please redownload the latest `.jar` file (rele
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the Graphical User Interface(GUI) will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **When entering parameters**, you are unable to add special characters into your parameter. However, you are allowed to use hyphen, `-`, in your MedicalHistory  
-   e.g. if the parameter is `n/Hiller s/o Tim`, the `NAME` input will be rejected. To remedy this, please use a whitespace instead.
+   e.g. if the parameter is `n/Hiller s/o Tim`, the `NAME` input will be rejected. To remedy this, please omit
+   the `/` instead.
 3. **For foreigner patients**, we are unable to use this app as they do not have an `NRIC`. Unfortunately this cannot be remedied at this point in time.
 
 --------------------------------------------------------------------------------------------------------------------
