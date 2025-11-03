@@ -40,11 +40,11 @@ With simple commands, you can add patients, schedule appointments, search record
    * Download the latest `.jar` file (release) from [here](https://github.com/AY2526S1-CS2103T-W10-3/tp/releases).
 
 3. Choose a Home Folder to store your data
-   * Move the .jar file to the folder where you’d like DoctorBase to save your data.
+   * Move the `.jar` file to the folder where you’d like DoctorBase to save your data.
 
 4. Open the terminal and navigate to that folder
    * Open Terminal (Mac/Linux) or Command Prompt (Windows)
-   * Navigate to your folder (eg, Documents/doctorBase) using cd, like this:
+   * Navigate to your folder (e.g, Documents/doctorBase) using `cd`, like this:
      * macOS/Linux:
        ````
        cd ~/Documents/doctorbase
@@ -81,20 +81,20 @@ With simple commands, you can add patients, schedule appointments, search record
 **:information_source: Notes about the command format:**
 
 * Words in `UPPER_CASE` are user-supplied parameters.  
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be modified like so: `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in `[square brackets]` are optional.  
   e.g `n/NAME [mh/MEDICAL_HISTORY]` can be used as `n/John Doe mh/cancer` or as `n/John Doe`.
 
-* Items ending with `…` can be used any number of times (including 0 times).  
-  e.g. `[mh/MEDICAL_HISTORY]…​` can be used as ` ` (0 times), `mh/cancer`, `mh/cancer mh/covid` etc.
+* Items ending with `…` can be used multiple times including zero times.  
+  e.g. `[mh/MEDICAL_HISTORY]…​` can be used as ` ` (i.e. 0 times), `mh/cancer`, `mh/cancer mh/covid` etc.
 
-* `INDEX` refers to the number shown beside a patient or appointment in the currently displayed list.
+* `INDEX` refers to the number shown beside a patient or appointment in the displayed list.
     * `INDEX` **must be a positive integer** (`1, 2, 3, …`)
-    * After using certain commands like `find`, the patient/appointment's `INDEX` may change in line with the displayed list.
-    * Commands that use `INDEX` refer to the list currently displayed:
+    * After using commands like `find`, the displayed list changes so the `INDEX` changes too.
+    * Commands that use `INDEX` depend on the list currently displayed:
         * e.g. `delete 2` deletes the 2nd patient only when the **patient list** is displayed.
-        * e.g. `delete-appt 2` deletes the 2nd appointment of a patient only when their **appointment list** is displayed.
+        * e.g. `delete-appt 2` deletes the 2nd appointment only when the **appointment list** is displayed.
 
 * Parameters can appear in any order.  
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -102,7 +102,7 @@ With simple commands, you can add patients, schedule appointments, search record
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `list-appt-upcoming`, `exit` and `clear`) will be ignored.  
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines. Space characters surrounding line-breaks may be omitted when copied over to the application.
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
 ---
@@ -129,7 +129,7 @@ Exits the program.
 
 ### Clearing all entries : `clear`
 
-Removes **all patients and appointments** from DoctorBase.  
+Removes **all patients and appointments** at once.  
 Useful if you want to restart with a clean database.
 
 **Format:** `clear`
@@ -147,21 +147,23 @@ Useful when you take in a new patient under your care.
 
 **Format:** `add n/NAME i/NRIC g/GENDER p/PHONE_NUMBER e/EMAIL d/DATE_OF_BIRTH a/ADDRESS [mh/MEDICAL_HISTORY]…​`
 * `DATE_OF_BIRTH` uses the format `dd-mm-yyyy`, and cannot be a future date.
-* `PHONE_NUMBER` should be 3-15 numbers. eg. `12345678`.
+* `PHONE_NUMBER` should be 3-15 numbers. e.g `12345678`.
 * `NAME` should be 1-80 alphanumeric characters, and cannot include special characters such as `/`.
 * `GENDER` should be male ('m'), female ('f'), or other ('o')
 * Each `MEDICAL_HISTORY` entry should be 1-50 alphanumeric characters.
 
 <div class="alert alert-info" markdown="1">
 :bulb: **Tip:** You can add multiple medical histories by repeating the `mh/` field as needed. You can also choose to add none.  
-:information_source: **Info:** PHONE_NUMBER` and `EMAIL` duplicates are allowed for patients using guardians' or parents' contact details
+<br>
+:information_source: **Info:** `PHONE_NUMBER` and `EMAIL` duplicates are allowed for patients using guardians' or parents' contact details.
 </div> 
 **Examples:**
 * `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01`
 * `add n/Betsy Crowe i/T0231512Z g/f d/02-12-2001 mh/covid e/betsycrowe@example.com a/Newgate Prison p/1234567 mh/leg fracture mh/G6PD`
 
 <div class="alert alert-danger" markdown="1">
-:x: **Note** Ensure that a **unique** `Nric` is provided. Else, the patient will be considered a duplicate, and an error message will be shown.
+:exclamation: **Note:** Ensure that a **unique** `NRIC` is provided. Otherwise, the patient will be considered a duplicate, 
+and an error message will be shown.
 </div>
 
 
@@ -173,12 +175,13 @@ Shows the full patient list currently in DoctorBase.
 
 **Format:** `list`
 
-> **:information_source: Note:** Only the first 3 upcoming appointments will be shown in the patient view
-
+<div class="alert alert-info" markdown="1">
+**:information_source: Note:** Only the first 3 upcoming appointments of each patient will be shown in the patient view.
+</div>
 
 ### Locating patients by name: `find`
 
-Finds patients whose names contain any of the given keywords.
+Finds patients whose names match any of the given keywords.
 
 **Format:** `find KEYWORD [MORE_KEYWORDS]`
 
@@ -198,7 +201,7 @@ Finds patients whose names contain any of the given keywords.
 
 ### Editing a patient : `edit`
 
-Updates the details of an existing patient in the currently viewed patient list.  
+Updates the details of an existing patient in the currently displayed patient list.  
 Can only be used while viewing a list of patients. Run `list` to do so.
 
 
@@ -207,18 +210,18 @@ Can only be used while viewing a list of patients. Run `list` to do so.
 
 * At least **one optional field** must be provided.
 * Existing values will be updated to the input values.
-* When editing medical histories, the existing medical histories of the patient will be removed i.e adding of medical histories is not cumulative.
-* You can remove all the patient’s medical histories by typing `mh/` without specifying any medical histories after it.
+* When editing medical histories, the existing medical histories of the patient will be removed, i.e adding of medical histories is not cumulative.
+* You can remove all of a patient’s medical histories by typing `mh/` without specifying any medical histories after it.
 
 **Examples:**
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower mh/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing 
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient in the currently displayed patient list to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower mh/` Edits the name of the 2nd patient in the currently displayed patient list to be `Betsy Crower` and clears all of their existing 
    medical histories.
 
 
 ### Deleting a patient : `delete`
 
-Removes a patient (and all of their appointments) from the currently viewed patient list.   
+Removes a patient (and all of their appointments) from the currently displayed patient list.   
 Useful when a patient is no longer going to be under your care
 
 Can only be used while viewing a list of patients. Run `list` to do so.
@@ -227,8 +230,8 @@ Can only be used while viewing a list of patients. Run `list` to do so.
 **Format:** `delete INDEX`
 
 **Examples:**
-* `list` followed by `delete 2` deletes the 2nd patient in the patient list.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd patient in the currently displayed patient list.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the resultant patient list of the `find` command.
 
 <div class="alert alert-warning" markdown="1">
 :warning: **Caution:** This action **cannot be undone**!
@@ -243,7 +246,7 @@ Can only be used while viewing a list of patients. Run `list` to do so.
 
 
 **Format:** `add-appt INDEX at/APPOINTMENT_TITLE ad/APPOINTMENT_DATE`
-* `INDEX` refers to patient shown in the current **patient list**
+* `INDEX` refers to the number before a patient's name in the currently displayed **patient list**.
 * `APPOINTMENT_DATE` uses the format `dd-mm-yyyy, HHmm` 
 
 **Examples:**
@@ -256,13 +259,13 @@ Can only be used while viewing a list of patients. Run `list` to do so.
 
 ### Listing all upcoming appointments : `list-appt-upcoming`
 
-Shows every future appointments across all patients, sorted by date.   
+Shows every future appointment across all patients, sorted by date.   
 Useful when you want to keep track of your upcoming schedule.
 
 **Format:** `list-appt-upcoming`
 
 <div class="alert alert-info" markdown="1">
-:information_source: **Note:** No commands other than `add` and `list` can be run in this view model
+:information_source: **Note:** No commands other than `add` and `list` can be run while displaying this.
 </div>
 
 ![list appointment upcoming](images/listApptUpcomingExample.png)
@@ -270,9 +273,9 @@ Useful when you want to keep track of your upcoming schedule.
 
 ### Listing all appointments of patient : `list-appt`
 
-Shows all appointments of the selected patient.  
-Past appointments will appear **greyed out**, while upcoming appointments remain in the normal colour.  
-Appointments are sorted with **upcoming dates** first (earliest to latest), followed by **past visits** in chronological order.  
+Shows all the appointments of a selected patient.  
+Past appointments will be **greyed out**.  
+**Upcoming appointments** will be shown first (earliest to latest), followed by **past appointments** in chronological order.  
 Useful when you want to check a patient’s appointment history or upcoming schedule.
 
 Can only be used while viewing a list of patients. Run `list` to do so.
@@ -280,7 +283,7 @@ Can only be used while viewing a list of patients. Run `list` to do so.
 **Format:** `list-appt INDEX`
 
 **Examples:**
-* `list-appt 1` : List all appointments of patient in index 1 of patient list.
+* `list-appt 1` : List all appointments of the first patient in the currently displayed patient list.
 
 ![list appointment](images/listApptExample.png)
 
@@ -291,7 +294,7 @@ Can only be used while viewing a list of patients. Run `list` to do so.
 
 ### Editing an appointment : `edit-appt`
 
-Updates the details of an existing appointment in the currently viewed appointment list of a patient.  
+Updates the details of an existing appointment in the currently displayed appointment list of a patient.  
 Can only be used while viewing the appointments of a patient. Run `list-appt INDEX` to do so.
 
 **Format:** `edit-appt INDEX [at/APPOINTMENT_TITLE] [ad/APPOINTMENT_DATE]`
@@ -300,26 +303,20 @@ Can only be used while viewing the appointments of a patient. Run `list-appt IND
 * Existing values will be updated to the input values
 
 **Examples:**
-* `edit-appt 1 at/dental ad/02-02-2002, 0900` edits the 1st appointment in the appointments list for the selected patient
-* `edit-appt 2 ad/20-12-2025, 1200` edits the 2nd appointment in the appointments list for the selected patient
-
-**Note**
-- This command only works in appointments view (i.e. `list-appt INDEX` has to be ran first)
+* `edit-appt 1 at/dental ad/02-02-2002, 0900` edits the 1st appointment in the currently displayed appointment list.
+* `edit-appt 2 ad/20-12-2025, 1200` edits the 2nd appointment in the currently displayed appointment list.
 
 
 ### Deleting an appointment : `delete-appt`
 
-Deletes an appointment from the currently viewed appointment list of a patient.  
+Deletes an appointment from the currently displayed appointment list of a patient.  
 Can only be used while viewing the appointments of a patient. Run `list-appt INDEX` to do so.
 
 **Format:** `delete-appt INDEX`
 
 **Examples:**
-* `delete-appt 1` deletes the 1st appointment in the appointments list for the selected patient
-* `delete-appt 3` deletes the 3rd appointment in the appointments list for the selected patient
-
-**Note**
-- This command only works in appointments view (i.e. `list-appt INDEX` has to be ran first)
+* `delete-appt 1` deletes the 1st appointment in the currently displayed appointment list.
+* `delete-appt 3` deletes the 3rd appointment in the currently displayed appointment list.
 
 
 ---
@@ -329,18 +326,18 @@ Can only be used while viewing the appointments of a patient. Run `list-appt IND
 
 ### Saving the data
 
-DoctorBase data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+DoctorBase data is saved automatically after any command that modifies it. There is no need to save manually.
 
 
 ### Editing the data file
 
-DoctorBase data are saved automatically as a JSON file `[JAR file location]/data/doctorBase.json`. Advanced users are welcome to update data directly by editing that data file.
+DoctorBase data is saved as a JSON file at `[JAR file location]/data/doctorBase.json`. Advanced users are welcome to update data directly by editing it.
 
 <div markdown="span" class="alert alert-warning">
 
 :exclamation:**Caution:**
-If your changes to the data file makes its format invalid, DoctorBase will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.  
-Furthermore, certain edits can cause the DoctorBase to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the JSON file makes its format invalid, DoctorBase will discard all data and start with an empty JSON file at the next run. Hence, it is recommended to make a backup of the file before making any edits.  
+Furthermore, certain edits can cause DoctorBase to behave in unexpected ways (e.g a value entered is outside its acceptable range). Therefore, edit the JSON file only if you are confident that you can update it correctly.
 
 </div>
 
