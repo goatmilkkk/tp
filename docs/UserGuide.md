@@ -345,8 +345,8 @@ Furthermore, certain edits can cause DoctorBase to behave in unexpected ways (e.
 
 ## **FAQ**
 
-**Q**: How do I transfer my data to another Computer?  
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous `DoctorBase` home folder.
+**Q**: How do I transfer my data to another computer?  
+**A**: Install DoctorBase in the other computer and overwrite the empty JSON file it creates with the JSON file in your current device's `DoctorBase`.
 
 **Q**: What happens if I accidentally type in the wrong parameters?   
 **A**: Do not worry, the application will pick up invalid parameters and tell you what was the issue and will not update the patient/appointment list.
